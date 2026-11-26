@@ -1,0 +1,33 @@
+name: spec-fetch
+# 공공데이터포털 오픈API 명세(호출 주소·요청 변수·응답 항목)를 catalog/specs/ 에 모은다. 인증키를 쓰지 않는다.
+# 후보 목록: catalog/candidates.json. 사람이 Actions 화면에서 "Run workflow" 를 눌러 돌린다(예약 없음).
+on:
+  workflow_dispatch:
+    inputs:
+      only:
+        description: "쉼표로 구분한 pk(비우면 후보 전체)"
+        required: false
+        default: ""
+permissions:
+  contents: write
+concurrency: { group: data-commit, cancel-in-progress: false }
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: 시험
+        run: python3 -m unittest discover -s tests
+      - name: 명세 받기
+        run: python3 collectors/spec_fetch.py run --only "${{ github.event.inputs.only }}"
+      - name: 반영
+        run: |
+          git config user.name "gov-lib-data bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add catalog/specs
+          git diff --cached --quiet || git commit -m "spec-fetch: $(date +%F) 명세"
+          git pull --rebase -q || true
+          git push
