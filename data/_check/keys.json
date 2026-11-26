@@ -11,8 +11,8 @@
     },
     "KOBIS_KEY": {
       "등록": true,
-      "HTTP": 200,
-      "응답앞부분": "{\"boxOfficeResult\":{\"boxofficeType\":\"일별 박스오피스\",\"showRange\":\"20261124~20261124\",\"dailyBoxOfficeList\":[{\"rnum\":\"1\",\"rank\":\"1\",\"rankInten\":\"0\",\"rankOldAndNew\":\"OLD\",\"movieCd\":\"20247221\",\"movieNm\":\"폭설\",\"o"
+      "HTTP": null,
+      "응답앞부분": "<urlopen error timed out>"
     },
     "SEOUL_KEY": {
       "등록": true,
@@ -26,8 +26,8 @@
     },
     "LAW_OC": {
       "등록": true,
-      "HTTP": 200,
-      "응답앞부분": "{\"OrdinSearch\": { \"law\": { \"자치법규ID\": \"2019671\", \"id\": \"1\", \"자치법규분야명\": \"제5장 맑은도시\", \"자치법규명\": \"가평군 도서관 운영 조례\", \"자치법규일련번호\": \"2142769\", \"자치법규상세링크\": \"/DRF/lawService.do?OC=***&target=ordin&MST=2142769&type="
+      "HTTP": null,
+      "응답앞부분": "<urlopen error [Errno -3] Temporary failure in name resolution>"
     }
   }
 }
