@@ -14,6 +14,15 @@ class T(unittest.TestCase):
         self.assertEqual(ca.region_of(items[1]), ("서울특별시", "구로구"))
         self.assertEqual(ca.total_count(obj), 2)
 
+    def test_region_chongram_and_sports(self):
+        self.assertEqual(ca.region_of({"instAddr": "경기도 용인시 수지구 성복1로 6 성복도서관", "sggCd": "41460"}), ("경기도", "용인시"))
+        self.assertEqual(ca.region_of({"addr_ctpv_nm": "경기도", "fcob_nm": "간이운동장",
+                                       "faci_road_addr": "경기도 화성시 동탄구 동탄대로 153"}), ("경기도", "화성시"))
+
+    def test_clean_drops_geo_and_lot(self):
+        r = ca.clean_row({"RDFS_label": "a", "GEO_location": "http://x/loc", "faci_lot": "127.1"})
+        self.assertEqual(set(r), {"RDFS_label"})
+
     def test_clean_drops_phone_coords(self):
         r = ca.clean_row({"facNm": "a", "TELNO": "1", "latitude": "2", "lon": "3", "rprsvNm": "홍", "addr": "x"})
         self.assertEqual(set(r), {"facNm", "addr"})

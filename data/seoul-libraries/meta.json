@@ -1,28 +1,28 @@
 {
-  "자료": "서울시 공공도서관",
-  "수집일": "2026-11-26",
-  "상태": "성공",
-  "건수": 217,
-  "시군구수": 25,
-  "원천": "https://data.seoul.go.kr",
-  "호출주소": "http://openapi.seoul.go.kr:8088/{key}/json/SeoulPublicLibraryInfo/{start}/{end}/",
-  "남긴칸": [
-    "ADRES",
-    "CODE_VALUE",
-    "FDRM_CLOSE_DATE",
-    "GU_CODE",
-    "HMPG_URL",
-    "LBRRY_NAME",
-    "LBRRY_SEQ_NO",
-    "LBRRY_SE_NAME",
-    "OP_TIME",
-    "XCNTS",
-    "YDNTS"
-  ],
-  "버린칸": [
-    "TEL_NO"
-  ],
-  "저장방식": "공공시설 목록(전화·좌표·개인 칸 제외)+시군구 개수",
-  "비고": "",
-  "이용조건": "각 원천 기관 이용조건(공공데이터포털 이용허락범위·공공누리)을 따른다"
+ "자료": "서울시 공공도서관",
+ "수집일": "2026-11-26",
+ "상태": "성공",
+ "건수": 217,
+ "시군구수": 25,
+ "원천": "https://data.seoul.go.kr",
+ "호출주소": "http://openapi.seoul.go.kr:8088/{key}/json/SeoulPublicLibraryInfo/{start}/{end}/",
+ "남긴칸": [
+  "ADRES",
+  "CODE_VALUE",
+  "FDRM_CLOSE_DATE",
+  "GU_CODE",
+  "HMPG_URL",
+  "LBRRY_NAME",
+  "LBRRY_SEQ_NO",
+  "LBRRY_SE_NAME",
+  "OP_TIME",
+  "XCNTS",
+  "YDNTS"
+ ],
+ "버린칸": [
+  "TEL_NO"
+ ],
+ "저장방식": "공공시설 목록(전화·좌표·개인 칸 제외)+시군구 개수",
+ "비고": "",
+ "이용조건": "각 원천 기관 이용조건(공공데이터포털 이용허락범위·공공누리)을 따른다"
 }

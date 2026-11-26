@@ -22,10 +22,10 @@ import xml.etree.ElementTree as ET
 
 ROOT = "data"
 TODAY = dt.date.today()
-DROP = re.compile(r"(tel|phone|fax|전화|팩스|연락처|contact|mail|이메일|lat|lon|lng|위도|경도|mapx|mapy|좌표|crd|_x$|_y$|^x$|^y$|lot$|_lat$|^lat$|"
+DROP = re.compile(r"(tel|phone|fax|전화|팩스|연락처|contact|mail|이메일|lat|lon|lng|위도|경도|mapx|mapy|좌표|crd|_x$|_y$|^x$|^y$|lot$|_lat$|^lat$|geo_|"
                   r"rprsv|대표자|ceo|owner|담당자|관리자명)", re.I)
 ADDR_KEYS = ("ROAD_NM_ADDR", "LOTNO_ADDR", "rdnmadr", "lnmadr", "addr1", "address", "ADRES", "adres", "addr",
-             "fcob_nm", "faci_road_addr", "faci_addr", "소재지도로명주소", "소재지지번주소", "주소", "도로명주소", "지번주소")
+             "instAddr", "faci_road_addr", "faci_addr", "소재지도로명주소", "소재지지번주소", "주소", "도로명주소", "지번주소")
 SIDO_KEYS = ("ctprvnNm", "sido", "sidonm", "ctprvn_nm", "CTPRV_NM", "ctpvNm", "addr_ctpv_nm", "areaNm", "CTPV_NM", "CTPRVN_NM", "areaNm", "시도명", "시도")
 SGG_KEYS = ("signguNm", "sggNm", "gungu", "gugunnm", "signgu_nm", "SGG_NM", "lclgvNm", "addr_cpb_nm", "SGG_NM", "LCLGV_NM", "SIGNGU_NM", "CODE_VALUE", "sigunguNm", "시군구명", "시군구")
 LICENSE = "각 원천 기관 이용조건(공공데이터포털 이용허락범위·공공누리)을 따른다"
