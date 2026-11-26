@@ -1,0 +1,33 @@
+{
+  "확인일": "2026-11-26",
+  "결과": {
+    "DATA_GO_KR_KEY": {
+      "등록": false
+    },
+    "KOPIS_KEY": {
+      "등록": true,
+      "HTTP": null,
+      "응답앞부분": "<urlopen error timed out>"
+    },
+    "KOBIS_KEY": {
+      "등록": true,
+      "HTTP": 200,
+      "응답앞부분": "{\"boxOfficeResult\":{\"boxofficeType\":\"일별 박스오피스\",\"showRange\":\"20261124~20261124\",\"dailyBoxOfficeList\":[{\"rnum\":\"1\",\"rank\":\"1\",\"rankInten\":\"0\",\"rankOldAndNew\":\"OLD\",\"movieCd\":\"20247221\",\"movieNm\":\"폭설\",\"o"
+    },
+    "SEOUL_KEY": {
+      "등록": true,
+      "HTTP": 200,
+      "응답앞부분": "{\"SeoulPublicLibraryInfo\":{\"list_total_count\":217,\"RESULT\":{\"CODE\":\"INFO-000\",\"MESSAGE\":\"정상 처리되었습니다\"},\"row\":[{\"LBRRY_SEQ_NO\":\"1935\",\"LBRRY_NAME\":\"강남구립못골도서관\",\"GU_CODE\":\"0008\",\"CODE_VALUE\":\"강남구\",\"ADRES\""
+    },
+    "GG_KEY": {
+      "등록": true,
+      "HTTP": 200,
+      "응답앞부분": "{\"RESULT\":{\"CODE\":\"ERROR-500\",\"MESSAGE\":\"서버 오류입니다. 지속적으로 발생시 홈페이지로 문의(Q&A) 바랍니다.\"}}"
+    },
+    "LAW_OC": {
+      "등록": true,
+      "HTTP": 200,
+      "응답앞부분": "{\"OrdinSearch\": { \"law\": { \"자치법규ID\": \"2019671\", \"id\": \"1\", \"자치법규분야명\": \"제5장 맑은도시\", \"자치법규명\": \"가평군 도서관 운영 조례\", \"자치법규일련번호\": \"2142769\", \"자치법규상세링크\": \"/DRF/lawService.do?OC=***&target=ordin&MST=2142769&type="
+    }
+  }
+}
