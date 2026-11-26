@@ -26,10 +26,47 @@
       "HTTP": 200,
       "응답앞부분": "{\"RESULT\":{\"CODE\":\"ERROR-500\",\"MESSAGE\":\"서버 오류입니다. 지속적으로 발생시 홈페이지로 문의(Q&A) 바랍니다.\"}}"
     },
+    "NL_KEY": {
+      "등록": true,
+      "HTTP": 200,
+      "응답앞부분": "{\"total\":143267,\"kwd\":\"도서관\",\"pageNum\":1,\"pageSize\":1,\"category\":\"\",\"sort\":\"\",\"result\":[{\"titleInfo\":\"\\u003cspan class\\u003d\\\"searching_txt\\\"\\u003e도서관\\u003c/span\\u003e\",\"typeName\":\"잡지/학술지\",\"placeInfo\":"
+    },
     "LAW_OC": {
       "등록": true,
       "HTTP": 200,
       "응답앞부분": "{\"OrdinSearch\": { \"law\": { \"자치법규ID\": \"2019671\", \"id\": \"1\", \"자치법규분야명\": \"제5장 맑은도시\", \"자치법규명\": \"가평군 도서관 운영 조례\", \"자치법규일련번호\": \"2142769\", \"자치법규상세링크\": \"/DRF/lawService.do?OC=***&target=ordin&MST=2142769&type="
+    },
+    "KCISA_KEY": {
+      "등록": false,
+      "비고": "등록 여부만 확인(호출 주소는 수집기에서)"
+    },
+    "KCISA_PRESS_KEY": {
+      "등록": true,
+      "비고": "등록 여부만 확인(호출 주소는 수집기에서)"
+    },
+    "KCISA_BOOKSTORE_KEY": {
+      "등록": true,
+      "비고": "등록 여부만 확인(호출 주소는 수집기에서)"
+    },
+    "KCISA_USEDBOOK_KEY": {
+      "등록": true,
+      "비고": "등록 여부만 확인(호출 주소는 수집기에서)"
+    },
+    "KCISA_POLICY_KR_KEY": {
+      "등록": false,
+      "비고": "등록 여부만 확인(호출 주소는 수집기에서)"
+    },
+    "KCISA_POLICY_INTL_KEY": {
+      "등록": false,
+      "비고": "등록 여부만 확인(호출 주소는 수집기에서)"
+    },
+    "KCISA_NLCY_RECO_KEY": {
+      "등록": false,
+      "비고": "등록 여부만 확인(호출 주소는 수집기에서)"
+    },
+    "KCISA_NEWBOOK_KEY": {
+      "등록": false,
+      "비고": "등록 여부만 확인(호출 주소는 수집기에서)"
     }
   }
 }
