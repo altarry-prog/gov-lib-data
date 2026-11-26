@@ -21,6 +21,10 @@ jobs:
           GG_KEY: ${{ secrets.GG_KEY }}
           LAW_OC: ${{ secrets.LAW_OC }}
           NL_KEY: ${{ secrets.NL_KEY }}
+          SCHOOLINFO_KEY: ${{ secrets.SCHOOLINFO_KEY }}
+          LOFIN_KEY: ${{ secrets.LOFIN_KEY }}
+          SGIS_KEY: ${{ secrets.SGIS_KEY }}
+          SGIS_SECRET: ${{ secrets.SGIS_SECRET }}
           KCISA_KEY: ${{ secrets.KCISA_KEY }}
           KCISA_PRESS_KEY: ${{ secrets.KCISA_PRESS_KEY }}
           KCISA_BOOKSTORE_KEY: ${{ secrets.KCISA_BOOKSTORE_KEY }}

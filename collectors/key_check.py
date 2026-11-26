@@ -16,7 +16,15 @@ CHECKS = {
     "GG_KEY": "https://openapi.gg.go.kr/Tbggibllbrm?KEY={k}&Type=json&pIndex=1&pSize=1",
     "NL_KEY": "https://www.nl.go.kr/NL/search/openApi/search.do?key={k}&apiType=json&kwd=%EB%8F%84%EC%84%9C%EA%B4%80&pageSize=1&pageNum=1",
     "LAW_OC": "https://www.law.go.kr/DRF/lawSearch.do?OC={k}&target=ordin&type=JSON&query=%EB%8F%84%EC%84%9C%EA%B4%80&display=1",
+    # 2026-11-26 추가. 매개변수는 gov-ax-lab scripts/open_api_collect.py 와 같음(그쪽도 아직 첫 성공 전이라 응답으로 확인)
+    "SCHOOLINFO_KEY": "https://www.schoolinfo.go.kr/openApi.do?apiKey={k}&apiType=09&pbanYr=" + str(dt.date.today().year - 1)
+                      + "&sidoCode=41&schulKndCode=02",
+    "LOFIN_KEY": "https://www.lofin365.go.kr/lf/hub/QWGJK?Key={k}&Type=json&pIndex=1&pSize=1&fyr=" + str(dt.date.today().year)
+                 + "&wa_laf_cd=4100000",
 }
+
+# SGIS 는 서비스 ID + 보안 Key 두 개로 인증 토큰을 받는다
+SGIS_AUTH = "https://sgisapi.kostat.go.kr/OpenAPI3/auth/authentication.json?consumer_key={k}&consumer_secret={s}"
 
 
 PRESENCE_ONLY = ["KCISA_KEY", "KCISA_PRESS_KEY", "KCISA_BOOKSTORE_KEY", "KCISA_USEDBOOK_KEY",
@@ -41,6 +49,14 @@ def check(name, tmpl, get=None):
 
 def main():
     res = {"확인일": dt.date.today().isoformat(), "결과": {n: check(n, t) for n, t in CHECKS.items()}}
+    ck, cs = os.environ.get("SGIS_KEY", "").strip(), os.environ.get("SGIS_SECRET", "").strip()
+    if ck and cs:
+        r = check("SGIS_KEY", SGIS_AUTH.replace("{s}", urllib.parse.quote(cs, safe="")))
+        r["응답앞부분"] = r.get("응답앞부분", "").replace(cs, "***")
+        r["응답앞부분"] = __import__("re").sub(r'"accessToken"\s*:\s*"[^"]*"', '"accessToken":"***"', r["응답앞부분"])
+        res["결과"]["SGIS_KEY+SGIS_SECRET"] = r
+    else:
+        res["결과"]["SGIS_KEY+SGIS_SECRET"] = {"등록": False, "비고": f"SGIS_KEY {'있음' if ck else '없음'}, SGIS_SECRET {'있음' if cs else '없음'}"}
     for n in PRESENCE_ONLY:
         res["결과"][n] = {"등록": bool(os.environ.get(n, "").strip()), "비고": "등록 여부만 확인(호출 주소는 수집기에서)"}
     os.makedirs("data/_check", exist_ok=True)
