@@ -1,0 +1,35 @@
+{
+  "자료": "국립중앙도서관 도서관 정보",
+  "수집일": "2026-11-26",
+  "상태": "성공",
+  "건수": 20,
+  "시군구수": 1,
+  "원천": "https://www.data.go.kr/data/15154373/openapi.do",
+  "호출주소": "https://apis.data.go.kr/1371029/LibraryInformationService/getLibraryList",
+  "남긴칸": [
+    "DCTERMS_identifier",
+    "FOAF_homepage",
+    "GEO_location",
+    "LIBRARY_ID",
+    "RDFS_label",
+    "URI"
+  ],
+  "버린칸": [
+    "DCTERMS_subject",
+    "FOAF_phone",
+    "GEO_lat",
+    "GEO_long",
+    "NLON_dateOfClosed",
+    "NLON_dateOfOpening",
+    "NLON_isClosed",
+    "NLON_keyword",
+    "NLON_libraryType",
+    "NLON_openingYear",
+    "NLON_summerOpenTime",
+    "NLON_winterOpenTime",
+    "SCHEMA_faxNumber"
+  ],
+  "저장방식": "공공시설 목록(전화·좌표·개인 칸 제외)+시군구 개수",
+  "비고": "",
+  "이용조건": "각 원천 기관 이용조건(공공데이터포털 이용허락범위·공공누리)을 따른다"
+}

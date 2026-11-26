@@ -1,0 +1,38 @@
+{
+  "자료": "문화기반시설총람 문화의집",
+  "수집일": "2026-11-26",
+  "상태": "성공",
+  "건수": 45,
+  "시군구수": 1,
+  "원천": "https://www.data.go.kr/data/15125097/openapi.do",
+  "호출주소": "https://apis.data.go.kr/B553457/rgnCltrFcltExmnv1/clifClhsv1",
+  "남긴칸": [
+    "clbrBizPrgmCnt",
+    "clbrBizPrgmCtmrCnt",
+    "clhsNm",
+    "clhsOperCnfrNm",
+    "crclCnt",
+    "crclTotlMbrCnt",
+    "crtrYr",
+    "extrnSprtPrgmCnt",
+    "extrnSprtPrgmCtmrCnt",
+    "fcar",
+    "fyerCtmrCnt",
+    "hmpgAddr",
+    "instAddr",
+    "instId",
+    "onslPrgmCnt",
+    "onslPrgmCtmrCnt",
+    "operNope",
+    "pblshYr",
+    "sggCd",
+    "tlbdAmt",
+    "totlPrgmCnt"
+  ],
+  "버린칸": [
+    "telnoCn"
+  ],
+  "저장방식": "공공시설 목록(전화·좌표·개인 칸 제외)+시군구 개수",
+  "비고": "pblshYr=2024",
+  "이용조건": "각 원천 기관 이용조건(공공데이터포털 이용허락범위·공공누리)을 따른다"
+}
