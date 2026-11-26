@@ -1,0 +1,33 @@
+name: api-catalog
+# 공공데이터포털 목록개방현황(15062804)에서 문화정책용 오픈API N개를 고르고(catalog/api_catalog.csv),
+# 후보에 더한 뒤 spec-fetch 로 명세까지 받는다. 수동 실행만.
+on:
+  workflow_dispatch:
+    inputs:
+      top: { description: "고를 개수", required: false, default: "200" }
+permissions:
+  contents: write
+concurrency: { group: data-commit, cancel-in-progress: false }
+jobs:
+  catalog:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: 시험
+        run: python3 -m unittest discover -s tests
+      - name: 목록에서 고르기
+        env: { DATA_GO_KR_KEY: "${{ secrets.DATA_GO_KR_KEY }}" }
+        run: python3 collectors/api_catalog.py run --top "${{ github.event.inputs.top }}" --to-candidates
+      - name: 명세 받기
+        run: python3 collectors/spec_fetch.py run --delay 1.0
+      - name: 반영
+        run: |
+          git config user.name "gov-lib-data bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add catalog
+          git diff --cached --quiet || git commit -m "api-catalog: $(date +%F) 문화정책 오픈API 목록·명세"
+          git pull --rebase -q || true
+          git push
