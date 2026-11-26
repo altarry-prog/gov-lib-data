@@ -151,6 +151,38 @@ def parse_page(raw):
     }
 
 
+def embedded_specs(raw):
+    """화면 안에 박힌 swagger JSON(\"paths\")과 swaggerOprtinVOs(기능별 요청 변수) 를 꺼낸다(2026-11-26 화면 구조)."""
+    dec, specs, ops, seen = json.JSONDecoder(), [], [], set()
+    for m in re.finditer(r'"paths"\s*:\s*\{', raw):
+        starts = [i for i in range(m.start() - 1, max(-1, m.start() - 20000), -1) if raw[i] == "{"][:60]
+        for st in starts:
+            try:
+                obj, _ = dec.raw_decode(raw, st)
+            except ValueError:
+                continue
+            if isinstance(obj, dict) and isinstance(obj.get("paths"), dict) and obj["paths"]:
+                key = json.dumps(sorted(obj["paths"]))
+                if key not in seen:
+                    seen.add(key)
+                    specs.append(obj)
+                break
+    for m in re.finditer(r'"swaggerOprtinVOs"\s*:\s*\[', raw):
+        try:
+            arr, _ = dec.raw_decode(raw, m.end() - 1)
+        except ValueError:
+            continue
+        for o in arr if isinstance(arr, list) else []:
+            if not isinstance(o, dict):
+                continue
+            ops.append({"주소": o.get("oprtinUrl", ""), "기능": clean(o.get("oprtinNm", "")), "설명": clean(o.get("oprtinDc", ""))[:300],
+                        "요청": [{"이름": r.get("paramtrNm"), "구분": r.get("paramtrDivision"), "설명": clean(r.get("paramtrDc", ""))[:200]}
+                                 for r in o.get("reqList", []) if isinstance(r, dict)][:MAX_ROWS]})
+        break
+    return specs, ops
+
+
+W = "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}"
 W = "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}"
 
 
@@ -243,12 +275,15 @@ def fetch_one(pk, get=http_get, delay=1.5, today=None, dump=None):
             with open(os.path.join(dump, f"{pk}.html"), "w", encoding="utf-8") as f:
                 f.write(raw)
         page = parse_page(raw)
+        inline, ops = embedded_specs(raw)
     except Exception as e:  # noqa: BLE001
         res["비고"].append("상세 화면을 못 읽음: " + mask(str(e))[:160])
         return res
     res.update({k: v for k, v in page.items() if k != "참고문서 주소"})
     res["이용허락범위"] = page["항목"].get("이용허락범위", "화면에서 못 찾음")
-    specs, docs = [], []
+    specs = [{"주소": "화면에 포함", **swagger_summary(o)} for o in inline][:3]
+    res["기능"] = ops
+    docs = []
     for u in page["명세 주소"][:3]:
         time.sleep(delay)
         try:
@@ -269,9 +304,9 @@ def fetch_one(pk, get=http_get, delay=1.5, today=None, dump=None):
         except Exception as e:  # noqa: BLE001
             docs.append({"주소": u, "종류": "못 받음", "비고": mask(str(e))[:120]})
     res["명세"], res["참고문서"] = specs, docs
-    got_params = bool(page["표"]) or any(s["경로"] for s in specs) or any(d.get("표") for d in docs)
-    res["상태"] = "성공" if (page["주소 후보"] or specs) and got_params else ("일부" if (page["제목"] or page["표"]) else "실패")
-    if not page["주소 후보"] and not specs:
+    got_params = bool(page["표"]) or any(s["경로"] for s in specs) or any(d.get("표") for d in docs) or any(o["요청"] for o in ops)
+    res["상태"] = "성공" if (page["주소 후보"] or specs or any(o["주소"] for o in ops)) and got_params else ("일부" if (page["제목"] or page["표"]) else "실패")
+    if not page["주소 후보"] and not specs and not ops:
         res["비고"].append("호출 주소를 화면에서 못 찾음(파일데이터·표준데이터 화면일 수 있음)")
     return res
 

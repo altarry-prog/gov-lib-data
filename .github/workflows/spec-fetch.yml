@@ -23,22 +23,6 @@ jobs:
         run: python3 -m unittest discover -s tests
       - name: 명세 받기
         run: python3 collectors/spec_fetch.py run --only "${{ github.event.inputs.only }}" --dump /tmp/spec-raw
-      - name: 구조 조각(진단용 브랜치에서만)
-        if: github.ref != 'refs/heads/main'
-        run: |
-          mkdir -p catalog/specs/_debug
-          python3 - <<'PY'
-          import glob, os, re
-          for f in glob.glob('/tmp/spec-raw/*.html'):
-              s = open(f, encoding='utf-8').read()
-              out = [f'len={len(s)}', 'DO=' + ' '.join(sorted(set(re.findall(r'[\w/.-]+\.do\b', s))))]
-              for k in ('항목명', 'serviceKey', 'selectApi', 'oprtin', 'swagger', 'callBack'):
-                  i = s.find(k)
-                  if i >= 0:
-                      out.append(f'--- {k} @{i}\n' + s[max(0, i - 1200):i + 600])
-              open('catalog/specs/_debug/' + os.path.basename(f) + '.txt', 'w', encoding='utf-8').write('\n'.join(out))
-          PY
-          git add catalog/specs/_debug
       - name: 원본 화면(구조 확인용, 3일 보관, 커밋 안 함)
         uses: actions/upload-artifact@v4
         with: { name: spec-raw, path: /tmp/spec-raw, retention-days: 3, if-no-files-found: ignore }
