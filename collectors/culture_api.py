@@ -22,12 +22,12 @@ import xml.etree.ElementTree as ET
 
 ROOT = "data"
 TODAY = dt.date.today()
-DROP = re.compile(r"(tel|phone|fax|전화|팩스|연락처|contact|mail|이메일|lat|lon|lng|위도|경도|mapx|mapy|좌표|crd|_x$|_y$|^x$|^y$|"
+DROP = re.compile(r"(tel|phone|fax|전화|팩스|연락처|contact|mail|이메일|lat|lon|lng|위도|경도|mapx|mapy|좌표|crd|_x$|_y$|^x$|^y$|lot$|_lat$|^lat$|"
                   r"rprsv|대표자|ceo|owner|담당자|관리자명)", re.I)
 ADDR_KEYS = ("ROAD_NM_ADDR", "LOTNO_ADDR", "rdnmadr", "lnmadr", "addr1", "address", "ADRES", "adres", "addr",
              "fcob_nm", "faci_road_addr", "faci_addr", "소재지도로명주소", "소재지지번주소", "주소", "도로명주소", "지번주소")
-SIDO_KEYS = ("ctprvnNm", "sido", "sidonm", "ctprvn_nm", "CTPRV_NM", "CTPRVN_NM", "areaNm", "시도명", "시도")
-SGG_KEYS = ("signguNm", "sggNm", "gungu", "gugunnm", "signgu_nm", "SGG_NM", "SIGNGU_NM", "CODE_VALUE", "sigunguNm", "시군구명", "시군구")
+SIDO_KEYS = ("ctprvnNm", "sido", "sidonm", "ctprvn_nm", "CTPRV_NM", "ctpvNm", "addr_ctpv_nm", "areaNm", "CTPV_NM", "CTPRVN_NM", "areaNm", "시도명", "시도")
+SGG_KEYS = ("signguNm", "sggNm", "gungu", "gugunnm", "signgu_nm", "SGG_NM", "lclgvNm", "addr_cpb_nm", "SGG_NM", "LCLGV_NM", "SIGNGU_NM", "CODE_VALUE", "sigunguNm", "시군구명", "시군구")
 LICENSE = "각 원천 기관 이용조건(공공데이터포털 이용허락범위·공공누리)을 따른다"
 
 DG = "https://apis.data.go.kr"
@@ -44,7 +44,7 @@ JOBS = [
     # 행정안전부 문화 인허가(2025-11 신규, 매일 갱신): 업소는 개수만
     *[{"id": f"license-{k}", "name": f"인허가 {n}", "kind": "business", "key": "DATA_GO_KR_KEY",
        "url": [f"{DG}/1741000/{s}/info" for s in slugs], "params": {"returnType": "json"},
-       "page": ("pageNo", "numOfRows", 1000), "src": f"https://www.data.go.kr/data/{pk}/openapi.do"}
+       "page": ("pageNo", "numOfRows", 100), "max_pages": 2000, "src": f"https://www.data.go.kr/data/{pk}/openapi.do"}
       for k, n, slugs, pk in [("film-screening", "영화상영업", ["film_screenings"], 15154857),
                               ("movie-theater", "영화상영관", ["movie_theaters"], 15154848),
                               ("museum-gallery", "박물관·미술관", ["museums_and_art_galleries"], 15155146),
@@ -85,7 +85,7 @@ JOBS = [
      "src": "https://data.seoul.go.kr"},
     {"id": "kopis-venues", "name": "공연시설(KOPIS)", "kind": "facility", "key": "KOPIS_KEY", "xml": True,
      "url": "https://www.kopis.or.kr/openApi/restful/prfplc", "keyparam": "service", "params": {},
-     "page": ("cpage", "rows", 1000), "src": "https://www.kopis.or.kr/por/cs/openapi/openApiInfo.do"},
+     "page": ("cpage", "rows", 100), "src": "https://www.kopis.or.kr/por/cs/openapi/openApiInfo.do"},
     # 문화공공데이터광장: 호출 주소를 원천 안내 화면에서 찾는다
     *[{"id": k, "name": n, "kind": "facility", "key": env, "kcisa_page": pid,
        "params": {}, "page": ("pageNo", "numOfRows", 1000), "src": f"https://www.culture.go.kr/data/openapi/openapiView.do?id={pid}"}
@@ -206,6 +206,7 @@ def build_url(job, url, key, extra):
 
 
 def run_job(job, get=http_get, max_pages=200, log=print):
+    max_pages = job.get("max_pages", max_pages)
     key = os.environ.get(job["key"], "").strip()
     if not key:
         return {"상태": "키 없음", "키": job["key"]}
@@ -242,6 +243,11 @@ def run_job(job, get=http_get, max_pages=200, log=print):
                 except Exception as e:  # noqa: BLE001
                     note = "응답 해석 실패: " + redact(text, key)[:200].replace("\n", " ")
                     break
+                if items and set(items[0]) >= {"returncode", "errmsg"}:
+                    note = "원천 오류: " + str(items[0].get("errmsg", ""))[:120]
+                    items = []
+                    rows = []
+                    break
                 if not items:
                     if page == 1:
                         note = "빈 응답: " + redact(text, key)[:200].replace("\n", " ")
@@ -249,9 +255,13 @@ def run_job(job, get=http_get, max_pages=200, log=print):
                 rows += items
                 for it in items:
                     fields.update(it.keys())
+                if page == 1:
+                    first_len = len(items)
                 if obj_total is not None and len(rows) >= obj_total:
                     break
-                if len(items) < size:
+                if obj_total is None and len(items) < first_len:
+                    break
+                if obj_total is None and first_len < size and len(rows) >= first_len * max_pages:
                     break
                 time.sleep(0.3)
             if rows:
@@ -268,6 +278,14 @@ def save(job, res, root=ROOT, today=None):
     out = os.path.join(root, job["id"])
     os.makedirs(out, exist_ok=True)
     rows = res.get("rows", [])
+    if job["kind"] == "business":
+        def active(r):
+            code = str(r.get("SALS_STTS_CD", r.get("DTL_SALS_STTS_CD", ""))).strip()
+            name = str(r.get("SALS_STTS_NM", r.get("DTL_SALS_STTS_NM", "")))
+            return code in ("01", "1") or "영업" in name or "정상" in name or not (code or name)
+        rows_all, rows = rows, [r for r in rows if active(r)]
+    if job["kind"] == "facility":
+        rows = [r for r in rows if str(r.get("del_yn", "N")).upper() != "Y"]
     counts = {}
     for r in rows:
         sido, sgg = region_of(r)
@@ -295,9 +313,10 @@ def save(job, res, root=ROOT, today=None):
             w.writerows(cleaned)
         kept = cols
     meta = {"자료": job["name"], "수집일": today, "상태": res["상태"], "건수": len(rows),
+            "받은건수": len(res.get("rows", [])),
             "시군구수": len(counts), "원천": job["src"],
             "호출주소": (res.get("url") or "").split("?")[0].replace(os.environ.get(job["key"], "") or "\0", "***"),
-            "남긴칸": kept, "버린칸": sorted(set(res.get("fields", [])) - set(kept)) if kept else [],
+            "남긴칸": kept, "필드": res.get("fields", []), "버린칸": sorted(set(res.get("fields", [])) - set(kept)) if kept else [],
             "저장방식": {"facility": "공공시설 목록(전화·좌표·개인 칸 제외)+시군구 개수",
                        "business": "시군구별 개수만(업소 목록은 저장하지 않음)",
                        "series": "시군구별 합계"}[job["kind"]],
