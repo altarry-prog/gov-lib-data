@@ -387,8 +387,15 @@ def main(argv=None):
         meta = save(job, res)
         summary[job["id"]] = f'{meta["상태"]} {meta["건수"]}건 {meta["비고"][:60]}'
         print(job["id"], summary[job["id"]], flush=True)
-    os.makedirs(ROOT, exist_ok=True)
-    with open(os.path.join(ROOT, "_check", "culture_api.json"), "w", encoding="utf-8") as f:
+    chk = os.path.join(ROOT, "_check", "culture_api.json")
+    os.makedirs(os.path.dirname(chk), exist_ok=True)
+    try:                                   # 작업을 하나씩 따로 돌려도(--only) 같은 날 결과는 합친다
+        old = json.load(open(chk, encoding="utf-8"))
+        if old.get("수집일") == TODAY.isoformat():
+            summary = {**old.get("결과", {}), **summary}
+    except (OSError, ValueError):
+        pass
+    with open(chk, "w", encoding="utf-8") as f:
         json.dump({"수집일": TODAY.isoformat(), "결과": summary}, f, ensure_ascii=False, indent=2)
     return 0
 
