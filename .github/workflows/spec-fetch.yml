@@ -21,8 +21,11 @@ jobs:
         with: { python-version: "3.12" }
       - name: 시험
         run: python3 -m unittest discover -s tests
+      - name: (임시) 목록에서 고르기
+        env: { DATA_GO_KR_KEY: "${{ secrets.DATA_GO_KR_KEY }}" }
+        run: python3 collectors/api_catalog.py run --top 200 --to-candidates
       - name: 명세 받기
-        run: python3 collectors/spec_fetch.py run --only "${{ github.event.inputs.only }}" --dump /tmp/spec-raw
+        run: python3 collectors/spec_fetch.py run --delay 1.0
       - name: 원본 화면(구조 확인용, 3일 보관, 커밋 안 함)
         uses: actions/upload-artifact@v4
         with: { name: spec-raw, path: /tmp/spec-raw, retention-days: 3, if-no-files-found: ignore }
