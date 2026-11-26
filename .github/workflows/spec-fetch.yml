@@ -21,21 +21,6 @@ jobs:
         with: { python-version: "3.12" }
       - name: 시험
         run: python3 -m unittest discover -s tests
-      - name: (임시) 화면 조각
-        run: |
-          mkdir -p catalog/_debug
-          python3 - <<'PY'
-          import re, urllib.request
-          s = urllib.request.urlopen(urllib.request.Request("https://www.data.go.kr/data/15062804/fileData.do", headers={"User-Agent": "Mozilla/5.0"}), timeout=60).read().decode("utf-8", "replace")
-          out = ["DO=" + " ".join(sorted(set(re.findall(r"[\w/.-]+\.do\b", s))))]
-          for k in ("fileDownload", "atchFileId", "fn_fileData", "download", "uddi:", "publicDataDetailPk", "csv"):
-              for m in list(re.finditer(re.escape(k), s))[:3]:
-                  out.append(f"--- {k} @{m.start()}\n" + s[max(0, m.start() - 400):m.start() + 400])
-          open("catalog/_debug/filedata.txt", "w", encoding="utf-8").write("\n".join(out))
-          PY
-          git add catalog/_debug
-          git config user.name "gov-lib-data bot"; git config user.email "actions@users.noreply.github.com"
-          git commit -m "debug" -q && git push -q
       - name: (임시) 목록에서 고르기
         env: { DATA_GO_KR_KEY: "${{ secrets.DATA_GO_KR_KEY }}" }
         run: python3 collectors/api_catalog.py run --top 200 --to-candidates
