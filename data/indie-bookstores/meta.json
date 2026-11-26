@@ -6,19 +6,10 @@
   "받은건수": 327,
   "원천전체건수": 327,
   "앞선시도": [],
-  "시군구수": 1,
+  "시군구수": 123,
   "원천": "https://www.culture.go.kr/data/openapi/openapiView.do?id=623",
   "호출주소": "https://api.kcisa.kr/openapi/API_CIA_089/request",
-  "남긴칸": [
-    "ADDRESS",
-    "CNTC_RESRCE_NO",
-    "COORDINATES",
-    "DESCRIPTION",
-    "ISSUED_DATE",
-    "SUBJECT_KEYWORD",
-    "SUB_DESCRIPTION",
-    "TITLE"
-  ],
+  "남긴칸": [],
   "필드": [
     "ADDRESS",
     "CNTC_RESRCE_NO",
@@ -33,7 +24,7 @@
   "버린칸": [
     "CONTACT_POINT"
   ],
-  "저장방식": "공공시설 목록(전화·좌표·개인 칸 제외)+시군구 개수",
+  "저장방식": "시군구별 개수만(업소 목록은 저장하지 않음)",
   "비고": "327/327건",
   "이용조건": "각 원천 기관 이용조건(공공데이터포털 이용허락범위·공공누리)을 따른다"
 }

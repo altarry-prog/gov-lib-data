@@ -19,6 +19,15 @@ class T(unittest.TestCase):
         self.assertEqual(ca.region_of({"addr_ctpv_nm": "경기도", "fcob_nm": "간이운동장",
                                        "faci_road_addr": "경기도 화성시 동탄구 동탄대로 153"}), ("경기도", "화성시"))
 
+    def test_bookstores_counts_only_and_region(self):
+        jobs = {j["id"]: j for j in ca.JOBS}
+        self.assertEqual(jobs["indie-bookstores"]["kind"], "business")
+        self.assertEqual(jobs["used-bookstores"]["kind"], "business")
+        self.assertEqual(ca.region_of({"ADDRESS": "경기도 부천시 원미구 길주로 1"}), ("경기도", "부천시"))
+        self.assertEqual(ca.region_of({"ADDRESS": "(14709) 경기도 부천시 원미구 길주로 1"}), ("경기도", "부천시"))
+        r = ca.clean_row({"FCLTY_NM": "a", "FCLTY_LA": "37.5", "FCLTY_LO": "127.0", "COORDINATES": "37,127"})
+        self.assertEqual(set(r), {"FCLTY_NM"})
+
     def test_clean_drops_geo_and_lot(self):
         r = ca.clean_row({"RDFS_label": "a", "GEO_location": "http://x/loc", "faci_lot": "127.1"})
         self.assertEqual(set(r), {"RDFS_label"})
