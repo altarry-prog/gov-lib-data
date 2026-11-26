@@ -1,0 +1,39 @@
+name: culture-api
+on:
+  schedule:
+    - cron: "41 21 * * 1"   # 매주 화요일 06:41(한국 시각)
+  workflow_dispatch:
+    inputs:
+      only:
+        description: "쉼표로 구분한 작업 id(비우면 전체)"
+        required: false
+        default: ""
+permissions:
+  contents: write
+concurrency: { group: data-commit, cancel-in-progress: false }
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: 시험
+        run: python3 -m unittest discover -s tests
+      - name: 수집
+        env:
+          DATA_GO_KR_KEY: ${{ secrets.DATA_GO_KR_KEY }}
+          SEOUL_KEY: ${{ secrets.SEOUL_KEY }}
+          KOPIS_KEY: ${{ secrets.KOPIS_KEY }}
+          KCISA_BOOKSTORE_KEY: ${{ secrets.KCISA_BOOKSTORE_KEY }}
+          KCISA_USEDBOOK_KEY: ${{ secrets.KCISA_USEDBOOK_KEY }}
+        run: python3 collectors/culture_api.py run --only "${{ github.event.inputs.only }}"
+      - name: 반영
+        run: |
+          git config user.name "gov-lib-data bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data
+          git diff --cached --quiet || git commit -m "culture-api: $(date +%F) 수집"
+          git pull --rebase -q || true
+          git push
