@@ -29,6 +29,17 @@ class TCatalog(unittest.TestCase):
     def test_find_path(self):
         self.assertEqual(ac.find_path(PAGE), PATH)
 
+    def test_fallback_to_infuser(self):
+        def get(u):
+            if "infuser" in u:
+                return json.dumps({"swagger": "2.0", "paths": {PATH: {"get": {}}}}).encode()
+            if u.startswith(ac.SRC):
+                return b"<html>no spec</html>"
+            return json.dumps({"totalCount": 1, "data": [row(1, "공연")]}).encode()
+        with mock.patch.object(ac.time, "sleep"):
+            rows, total, path = ac.fetch_rows("K", get=get, log=lambda *a: None)
+        self.assertEqual((path, total, len(rows)), (PATH, 1, 1))
+
     def test_run(self):
         with tempfile.TemporaryDirectory() as d:
             os.makedirs(os.path.join(d, "catalog"))

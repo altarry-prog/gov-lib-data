@@ -69,6 +69,14 @@ def find_path(raw):
 def fetch_rows(key, get=http_get, per=1000, delay=0.3, log=print):
     raw = get(SRC).decode("utf-8", "replace")
     path = find_path(raw)
+    if not path:  # 파일데이터 자동 변환 API 의 명세(키 없이 열림)
+        for u in (f"https://infuser.odcloud.kr/oas/docs?namespace={PK}/v1", f"https://www.data.go.kr/data/{PK}/openapi.do"):
+            try:
+                path = find_path(get(u).decode("utf-8", "replace"))
+            except Exception as e:  # noqa: BLE001
+                log(f"명세 못 읽음 {u}: {str(e)[:80]}")
+            if path:
+                break
     if not path:
         raise RuntimeError("목록개방현황 API 경로를 화면에서 못 찾음")
     rows, page, total = [], 1, None
