@@ -39,3 +39,22 @@ class T(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestLawCheck(unittest.TestCase):
+    def test_compare(self):
+        import law_check as lc
+        data = {"OrdinSearch": {"totalCnt": 3, "law": [
+            {"자치법규ID": "1", "자치법규명": "가시 도서관 조례", "공포일자": "20261101"},
+            {"자치법규ID": "2", "자치법규명": "나시 독서문화진흥 조례", "공포일자": "20261120"},
+            {"자치법규ID": "3", "자치법규명": "다시 정책자문 조례", "공포일자": "20261120"}]}}
+        items = lc.items_of(data)
+        new, total = lc.compare(items, {"1"})
+        self.assertEqual(total, 2)
+        self.assertEqual([n["자치법규ID"] for n in new], ["2"])
+
+    def test_key_not_leaked(self):
+        import law_check as lc
+        with self.assertRaises(RuntimeError) as cm:
+            lc.search("SECRETOC", "도서관", get=lambda u: "<html>SECRETOC 차단</html>")
+        self.assertNotIn("SECRETOC", str(cm.exception))

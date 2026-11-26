@@ -20,6 +20,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python3 collectors/ordinance_lib.py run --out data/ordinance
+      - name: 법제처 최신성 확인
+        continue-on-error: true
+        env:
+          LAW_OC: ${{ secrets.LAW_OC }}
+        run: python3 collectors/law_check.py run
       - name: 반영
         run: |
           git config user.name "gov-lib-data bot"
