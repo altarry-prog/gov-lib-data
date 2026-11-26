@@ -1,0 +1,30 @@
+name: key-check
+on:
+  workflow_dispatch: {}
+permissions:
+  contents: write
+concurrency: { group: data-commit, cancel-in-progress: false }
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: 키 확인
+        env:
+          DATA_GO_KR_KEY: ${{ secrets.DATA_GO_KR_KEY }}
+          KOPIS_KEY: ${{ secrets.KOPIS_KEY }}
+          KOBIS_KEY: ${{ secrets.KOBIS_KEY }}
+          SEOUL_KEY: ${{ secrets.SEOUL_KEY }}
+          GG_KEY: ${{ secrets.GG_KEY }}
+          LAW_OC: ${{ secrets.LAW_OC }}
+        run: python3 collectors/key_check.py
+      - name: 반영
+        run: |
+          git config user.name "gov-lib-data bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/_check
+          git diff --cached --quiet || git commit -m "key-check: $(date +%F)"
+          git push

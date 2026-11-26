@@ -58,3 +58,10 @@ class TestLawCheck(unittest.TestCase):
         with self.assertRaises(RuntimeError) as cm:
             lc.search("SECRETOC", "도서관", get=lambda u: "<html>SECRETOC 차단</html>")
         self.assertNotIn("SECRETOC", str(cm.exception))
+
+
+class TestKeyCheck(unittest.TestCase):
+    def test_missing_and_redact(self):
+        import key_check as kc
+        os.environ.pop("ZZ_KEY", None)
+        self.assertEqual(kc.check("ZZ_KEY", "http://x/{k}"), {"등록": False})
