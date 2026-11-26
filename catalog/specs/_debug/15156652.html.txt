@@ -1,0 +1,62 @@
+len=202887
+DO=//www.data.go.kr/data/15156652/openapi.do //www.data.go.kr/ugs/selectPortalPolicyView.do /bbs/cnm/selectCardNews.do /bbs/cnm/selectCardNewsListView.do /bbs/dnb/selectDeveloperNetworkListView.do /bbs/dnb/selectDeveloperNetworkView.do /bbs/dnb/updateDeveloperNetworkView.do /bbs/dsb/selectDataShareContentsListView.do /bbs/faq/selectFaqList.do /bbs/ntc/selectNotice.do /bbs/ntc/selectNoticeListView.do /bbs/rcr/selectRecsroomList.do /biz/dcat/metadata/15156652.do /en/index.do /iim/api/myPageUrl.do /iim/main/mypageMain.do /iim/miu/corpInsertView.do /index.do /llm/sch/curation/curationList.do /mcp/mcpDataList.do /mcp/mcpDataView.do /odmc/archive/index.do /odmc/intro/index.do /odmc/trublMdat/activityStatus/index.do /odmc/trublMdat/mdatStatistics/index.do /odsc/activity/meetingStatus/index.do /odsc/committeeMember/index.do /odsc/intro/index.do /osd/eduSupport.do /osd/opensquare.do /osd/serviceReport.do /problem/main.do /suc/awardWinning.do /suc/faqList.do /suc/preliminaryRound.do /suc/startup.do /tcs/dor/insertDataOfferReqstDocView.do /tcs/dor/insertDataOfferReqstProcssView.do /tcs/dor/insertTrublMdatReqstDocView.do /tcs/dor/insertTrublMdatReqstProcssView.do /tcs/dss/addApiLinkPrcuse.do /tcs/dss/aiAssistant.do /tcs/dss/getOrCreateQuickSummary.do /tcs/dss/hybridSearch.do /tcs/dss/recommendDataList.do /tcs/dss/redirectDevAcountRequestForm.do /tcs/dss/selectApiDataDetailView.do /tcs/dss/selectApiDetailFunction.do /tcs/dss/selectApiLinkUrl.do /tcs/dss/selectDataSetList.do /tcs/dss/selectPrcuseExamList.do /tcs/eds/ctm/selectContestDataList.do /tcs/eds/selectCoreDataListView.do /tcs/eds/selectCoreDataView.do /tcs/lms/liv/selectLocationView.do /tcs/lms/lvl/introduce.do /tcs/lms/lvl/selectAssignmentApplyProposalList.do /tcs/lms/lvl/selectAssignmentCompletedProposalList.do /tcs/lms/lvl/selectAssignmentProgressProposalList.do /tcs/lms/lvl/selectProposalSubjectList.do /tcs/lms/lvl/selectVoteSubjectList.do /tcs/lms/mpm/memberMapList.do /tcs/opd/ndm/view.do /tcs/puc/selectPublicUseCaseListView.do /tcs/vas/selectVisualizationListView.do /ugs/selectPortalInfoView.do /ugs/selectPortalPolicyView.do /ugs/selectPublicDataQlityView.do /ugs/selectPublicDataUseGuideView.do /uim/login/actionLogout.do /uim/login/loginView.do /uim/login/signupView.do
+--- serviceKey @170423
+rties":{}},"PRGRM_YMD":{"type":"string","description":"프로그램일자","properties":{}},"PRGRM_BGNG_HM":{"type":"string","description":"프로그램시작시분","properties":{}},"PRGRM_END_HM":{"type":"string","description":"프로그램종료시분","properties":{}},"PRGRM_PLC_NM":{"type":"string","description":"프로그램장소명","properties":{}},"PRGRM_TTL":{"type":"string","description":"프로그램제목","properties":{}},"PRGRM_CN":{"type":"string","description":"프로그램내용","properties":{}},"PRGRM_APLY_BGNG_YMD":{"type":"string","description":"프로그램신청시작일자","properties":{}},"PRGRM_APLY_END_YMD":{"type":"string","description":"프로그램신청종료일자","properties":{}}}}}}}}}}},"pageNo":{"type":"string","description":"페이지 번호","properties":{}},"numOfRows":{"type":"string","description":"목록건수","properties":{}},"totalCount":{"type":"string","description":"총 개수","properties":{}}}}},"xml":{"name":"response"}}},"00":{"description":"SUCCESS_CODE"},"03":{"description":"NODATA_CODE"},"04":{"description":"Missing keyword"}},"tags":["API 목록"],"summary":"인문프로그램 수강정보","description":"인문네트워크 내 인문프로그램의 개설 및 수강신청현황을 포함한 메타데이터를 제공한다","operationId":"getByInmunNetwork","consumes":["application/json"],"produces":["application/json","application/xml"]},"parameters":[{"name":"serviceKey","description":"공공데이터포털에서 받은 인증키","type":"string","required":true,"in":"query"},{"name":"pageNo","description":"페이지번호","type":"string","required":true,"in":"query"},{"name":"numOfRows","description":"한 페이지 결과 수","type":"string","required":true,"in":"query"},{"name":"type","description":"결과타입","type":"string","required":true,"in":"query"},{"name":"keyword","description":"키워드","type":"string","required":true,"in":"query"}]}},"definitions":{"getByInmunNetwork_response":{"type":"object","properties":{"header":{"type":"object","description":"header","properties":{"resultCode":{"type":"st
+--- selectApi @127667
+    crumb: ["홈", "공공데이터분쟁조정위원회", "자료실"] },
+			{ pattern: "/odsc/intro/index.do",                          crumb: ["홈", "공공데이터전략위원회", "위원회 소개"] },
+			{ pattern: "/odsc/committeeMember/index.do",                crumb: ["홈", "공공데이터전략위원회", "위원 현황"] },
+			{ pattern: "/odsc/activity/meetingStatus/index.do",         crumb: ["홈", "공공데이터전략위원회", "위원회 활동"] },
+			{ pattern: "/suc/startup.do",                               crumb: ["홈", "공공데이터 활용 창업경진대회", "대회소개"] },
+			{ pattern: "/suc/preliminaryRound.do",                      crumb: ["홈", "공공데이터 활용 창업경진대회", "기관별 예선"] },
+			{ pattern: "/suc/awardWinning.do",                          crumb: ["홈", "공공데이터 활용 창업경진대회", "수상작 목록"] },
+			{ pattern: "/suc/faqList.do",                               crumb: ["홈", "공공데이터 활용 창업경진대회", "FAQ"] },
+			{ pattern: "/osd/opensquare.do",                            crumb: ["홈", "오픈스퀘어-D", "오픈스퀘어-D 소개"] },
+			{ pattern: "/osd/eduSupport.do",                            crumb: ["홈", "오픈스퀘어-D", "활용 지원"] },
+			{ pattern: "/osd/serviceReport.do",                         crumb: ["홈", "오픈스퀘어-D", "서비스 신고"] },
+			{ pattern: "/bbs/ntc/selectNotice.do",                      crumb: ["홈", "정보공유", "공지사항"] },
+			{ pattern: "/tcs/dss/selectApiDataDetailView.do",           crumb: ["홈", "공공데이터", "데이터목록"] },
+			{ pattern: "/mcp/mcpDataList.do",                          crumb: ["홈", "공공데이터", "공공데이터 MCP"] },
+			{ pattern: "/mcp/mcpDataView.do",                          crumb: ["홈", "공공데이터", "공공데이터 MCP"] },
+			{ pattern: /^\/mcp\/data\/[^/]+\/view\.do$/,               crumb: ["홈", "공공데이터", "공공데이터 MCP"] },
+			{ pattern: "/tcs/opd/ndm/view.do",          				crumb: ["홈", "데이터활용", "공공데이터맵"] },
+			{ pattern: "/bbs/cnm/selectCardNews.do",          			crumb: ["홈", "정보공유", "포털뉴스"] },
+			{ pattern: "/tcs/dor/insertDataOfferReqstDocView.d
+--- oprtin @173965
+"CITY_NM":{"type":"string","description":"시도명"},"GUN_NM":{"type":"string","description":"군/구"},"schedules":{"type":"object","description":"schedules","properties":{"schedule":{"type":"array","description":"schedule","items":{"type":"object","properties":{"PRGRM_SCHDL_SN":{"type":"number","description":"프로그램일정일련번호"},"PRGRM_SN":{"type":"number","description":"프로그램일련번호"},"LBRART_INSTR_USER_ID":{"type":"string","description":"인문강사사용자아이디"},"PRGRM_NOPE":{"type":"string","description":"프로그램인원수"},"PRGRM_NO":{"type":"number","description":"프로그램번호"},"PRGRM_YMD":{"type":"string","description":"프로그램일자"},"PRGRM_BGNG_HM":{"type":"string","description":"프로그램시작시분"},"PRGRM_END_HM":{"type":"string","description":"프로그램종료시분"},"PRGRM_PLC_NM":{"type":"string","description":"프로그램장소명"},"PRGRM_TTL":{"type":"string","description":"프로그램제목"},"PRGRM_CN":{"type":"string","description":"프로그램내용"},"PRGRM_APLY_BGNG_YMD":{"type":"string","description":"프로그램신청시작일자"},"PRGRM_APLY_END_YMD":{"type":"string","description":"프로그램신청종료일자"}}}}}}}}}},"pageNo":{"type":"string","description":"페이지 번호"},"numOfRows":{"type":"string","description":"목록건수"},"totalCount":{"type":"string","description":"총 개수"}}}}}},"swaggerOprtinVOs":[{"oprtinUrl":"https://inmun360.culture.go.kr/service/inmun/getByInmunNetwork","oprtinNm":"인문프로그램 수강정보","oprtinDc":"인문네트워크 내 인문프로그램의 개설 및 수강신청현황을 포함한 메타데이터를 제공한다","gwSvcNm":"getByInmunNetwork","operationId":"getByInmunNetwork","publicDataTyDetailCode":"PRDE02","reqList":[{"paramtrNm":"serviceKey","paramtrDc":"공공데이터포털에서 받은 인증키","paramtrBassValue":"-","paramtrTy":"string","paramtrDivision":"필수","ck":true},{"paramtrNm":"pageNo","paramtrDc":"페이지번호","paramtrBassValue":"1","paramtrTy":"string","paramtrDivision":"필수","ck":true},{"paramtrNm":"numOfRows","paramtrDc":"한 페이지 결과 수","paramtrBassValue":"10","p
+--- swagger @146832
+tton>
+                    </li>
+                </ul>
+            </div>
+            <div class="tab-conts-wrap">
+                <section id="openTabpanel01" role="tabpanel" aria-labelledby="openTab01" class="tab-conts active" data-quick-nav="false">
+                    
+                        
+                            <div class="data-info-tit">
+                                <h3>활용명세</h3>
+                                <div class="btn-group">
+                                    <button type="button" class="krds-btn text medium open-modal" data-target="modal_guide_01">오픈 API 명세 확인 가이드<i class="svg-icon ico-angle right"></i></button>
+                                    <button type="button" class="krds-btn text medium guide-down">
+                                        가이드 다운로드<i class="svg-icon ico-down"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="data-report">
+                                <div class="line-box type2">
+                                    
+                                        
+                                            <div id="api-swagger"></div>
+                                        
+                                        
+                                    
+                                </div>
+                            </div>
+                        
+                        
+                    
+                </section>
+                <!-- 활용사례 -->
+                <section id="openTabpanel02" role="tabpanel" aria-labelledby="openTab02" class="tab-conts" data-quick-nav="false">
+                </section>
+                <section id="openTabpanel03" role="tabpanel" aria-labelledby="openTab03" class="tab-conts

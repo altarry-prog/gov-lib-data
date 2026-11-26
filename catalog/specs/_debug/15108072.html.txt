@@ -1,0 +1,62 @@
+len=203566
+DO=//www.data.go.kr/data/15108072/openapi.do //www.data.go.kr/ugs/selectPortalPolicyView.do //www.mois.go.kr/frt/bbs/type001/commonSelectBoardList.do /bbs/cnm/selectCardNews.do /bbs/cnm/selectCardNewsListView.do /bbs/dnb/selectDeveloperNetworkListView.do /bbs/dnb/selectDeveloperNetworkView.do /bbs/dnb/updateDeveloperNetworkView.do /bbs/dsb/selectDataShareContentsListView.do /bbs/faq/selectFaqList.do /bbs/ntc/selectNotice.do /bbs/ntc/selectNoticeListView.do /bbs/rcr/selectRecsroomList.do /biz/dcat/metadata/15108072.do /en/index.do /iim/api/myPageUrl.do /iim/main/mypageMain.do /iim/miu/corpInsertView.do /index.do /llm/sch/curation/curationList.do /mcp/mcpDataList.do /mcp/mcpDataView.do /odmc/archive/index.do /odmc/intro/index.do /odmc/trublMdat/activityStatus/index.do /odmc/trublMdat/mdatStatistics/index.do /odsc/activity/meetingStatus/index.do /odsc/committeeMember/index.do /odsc/intro/index.do /osd/eduSupport.do /osd/opensquare.do /osd/serviceReport.do /problem/main.do /suc/awardWinning.do /suc/faqList.do /suc/preliminaryRound.do /suc/startup.do /tcs/dor/insertDataOfferReqstDocView.do /tcs/dor/insertDataOfferReqstProcssView.do /tcs/dor/insertTrublMdatReqstDocView.do /tcs/dor/insertTrublMdatReqstProcssView.do /tcs/dss/addApiLinkPrcuse.do /tcs/dss/aiAssistant.do /tcs/dss/getOrCreateQuickSummary.do /tcs/dss/hybridSearch.do /tcs/dss/recommendDataList.do /tcs/dss/redirectDevAcountRequestForm.do /tcs/dss/selectApiDataDetailView.do /tcs/dss/selectApiDetailFunction.do /tcs/dss/selectApiLinkUrl.do /tcs/dss/selectDataSetList.do /tcs/dss/selectPrcuseExamList.do /tcs/eds/ctm/selectContestDataList.do /tcs/eds/selectCoreDataListView.do /tcs/eds/selectCoreDataView.do /tcs/lms/liv/selectLocationView.do /tcs/lms/lvl/introduce.do /tcs/lms/lvl/selectAssignmentApplyProposalList.do /tcs/lms/lvl/selectAssignmentCompletedProposalList.do /tcs/lms/lvl/selectAssignmentProgressProposalList.do /tcs/lms/lvl/selectProposalSubjectList.do /tcs/lms/lvl/selectVoteSubjectList.do /tcs/lms/mpm/memberMapList.do /tcs/opd/ndm/view.do /tcs/puc/selectPublicUseCaseListView.do /tcs/vas/selectVisualizationListView.do /ugs/selectPortalInfoView.do /ugs/selectPortalPolicyView.do /ugs/selectPublicDataQlityView.do /ugs/selectPublicDataUseGuideView.do /uim/login/actionLogout.do /uim/login/loginView.do /uim/login/signupView.do
+--- serviceKey @169585
+nt":{"type":"string","description":"만100세이상남자","properties":{}},"feml0AgeNmprCnt ":{"type":"string","description":"만0~9세여자","properties":{}},"feml10AgeNmprCnt":{"type":"string","description":"만10~19세여자","properties":{}},"feml20AgeNmprCnt":{"type":"string","description":"만20~29세여자","properties":{}},"feml30AgeNmprCnt":{"type":"string","description":"만30~39세여자","properties":{}},"feml40AgeNmprCnt":{"type":"string","description":"만40~49세여자","properties":{}},"feml50AgeNmprCnt":{"type":"string","description":"만50~59세여자","properties":{}},"feml60AgeNmprCnt":{"type":"string","description":"만60~69세여자","properties":{}},"feml70AgeNmprCnt":{"type":"string","description":"만70~79세여자","properties":{}},"feml80AgeNmprCnt":{"type":"string","description":"만80~89세여자","properties":{}},"feml90AgeNmprCnt":{"type":"string","description":"만90~99세여자","properties":{}}}}}}},"xml":{"name":"response"}}}},"tags":["API 목록"],"summary":"행정동별(통반단위) 성/연령별 주민등록 인구수 목록 조회","description":"시도명, 시군구명, 행정동명, 통, 반, 총인구수, 남자인구수, 여자인구수, 만0~9세남자, …, 만100세이상남자, 만0세여자, …, 만100세이상여자수를 조회","operationId":"selectAdmmSexdAgePpltn","consumes":["application/json"],"produces":["application/json","application/xml"]},"parameters":[{"name":"serviceKey","description":"인증키. 공공데이터포털에서 발급받은 인증키","type":"string","required":true,"in":"query"},{"name":"admmCd","description":"행정기관코드 자료확인(행정안전부 홈페이지  https://www.mois.go.kr/frt/bbs/type001/commonSelectBoardList.do?bbsId=BBSMSTR_000000000052 업무안내 > 지방자치분권실 > 주민등록,인감,행정사 > 주민등록,인감,행정사)","type":"string","required":true,"in":"query"},{"name":"srchFrYm","description":"조회시작년월. 2022.10부터 조회가능","type":"string","required":true,"in":"query"},{"name":"srchToYm","description":"조회종료년월. 3개월 기간내 설정","type":"string","required":true,"in":"query"},{"name":"lv","description":"조회결과구분. 광역시도 단위 : 1, 시군구 단위 : 2,
+--- selectApi @127556
+    crumb: ["홈", "공공데이터분쟁조정위원회", "자료실"] },
+			{ pattern: "/odsc/intro/index.do",                          crumb: ["홈", "공공데이터전략위원회", "위원회 소개"] },
+			{ pattern: "/odsc/committeeMember/index.do",                crumb: ["홈", "공공데이터전략위원회", "위원 현황"] },
+			{ pattern: "/odsc/activity/meetingStatus/index.do",         crumb: ["홈", "공공데이터전략위원회", "위원회 활동"] },
+			{ pattern: "/suc/startup.do",                               crumb: ["홈", "공공데이터 활용 창업경진대회", "대회소개"] },
+			{ pattern: "/suc/preliminaryRound.do",                      crumb: ["홈", "공공데이터 활용 창업경진대회", "기관별 예선"] },
+			{ pattern: "/suc/awardWinning.do",                          crumb: ["홈", "공공데이터 활용 창업경진대회", "수상작 목록"] },
+			{ pattern: "/suc/faqList.do",                               crumb: ["홈", "공공데이터 활용 창업경진대회", "FAQ"] },
+			{ pattern: "/osd/opensquare.do",                            crumb: ["홈", "오픈스퀘어-D", "오픈스퀘어-D 소개"] },
+			{ pattern: "/osd/eduSupport.do",                            crumb: ["홈", "오픈스퀘어-D", "활용 지원"] },
+			{ pattern: "/osd/serviceReport.do",                         crumb: ["홈", "오픈스퀘어-D", "서비스 신고"] },
+			{ pattern: "/bbs/ntc/selectNotice.do",                      crumb: ["홈", "정보공유", "공지사항"] },
+			{ pattern: "/tcs/dss/selectApiDataDetailView.do",           crumb: ["홈", "공공데이터", "데이터목록"] },
+			{ pattern: "/mcp/mcpDataList.do",                          crumb: ["홈", "공공데이터", "공공데이터 MCP"] },
+			{ pattern: "/mcp/mcpDataView.do",                          crumb: ["홈", "공공데이터", "공공데이터 MCP"] },
+			{ pattern: /^\/mcp\/data\/[^/]+\/view\.do$/,               crumb: ["홈", "공공데이터", "공공데이터 MCP"] },
+			{ pattern: "/tcs/opd/ndm/view.do",          				crumb: ["홈", "데이터활용", "공공데이터맵"] },
+			{ pattern: "/bbs/cnm/selectCardNews.do",          			crumb: ["홈", "정보공유", "포털뉴스"] },
+			{ pattern: "/tcs/dor/insertDataOfferReqstDocView.d
+--- oprtin @175469
+":"string","description":"만20~29세남자"},"male30AgeNmprCnt":{"type":"string","description":"만30~39세남자"},"male40AgeNmprCnt":{"type":"string","description":"만40~49세남자"},"male50AgeNmprCnt":{"type":"string","description":"만50~59세남자"},"male60AgeNmprCnt":{"type":"string","description":"만60~69세남자"},"male70AgeNmprCnt":{"type":"string","description":"만70~79세남자"},"male80AgeNmprCnt":{"type":"string","description":"만80~89세남자"},"male90AgeNmprCnt":{"type":"string","description":"만90~99세남자"},"male100AgeNmprCnt":{"type":"string","description":"만100세이상남자"},"feml0AgeNmprCnt ":{"type":"string","description":"만0~9세여자"},"feml10AgeNmprCnt":{"type":"string","description":"만10~19세여자"},"feml20AgeNmprCnt":{"type":"string","description":"만20~29세여자"},"feml30AgeNmprCnt":{"type":"string","description":"만30~39세여자"},"feml40AgeNmprCnt":{"type":"string","description":"만40~49세여자"},"feml50AgeNmprCnt":{"type":"string","description":"만50~59세여자"},"feml60AgeNmprCnt":{"type":"string","description":"만60~69세여자"},"feml70AgeNmprCnt":{"type":"string","description":"만70~79세여자"},"feml80AgeNmprCnt":{"type":"string","description":"만80~89세여자"},"feml90AgeNmprCnt":{"type":"string","description":"만90~99세여자"}}}}}}}},"swaggerOprtinVOs":[{"oprtinUrl":"https://rdoa.jumin.go.kr/admmSexdAgePpltn/selectAdmmSexdAgePpltn","oprtinNm":"행정동별(통반단위) 성/연령별 주민등록 인구수 목록 조회","oprtinDc":"시도명, 시군구명, 행정동명, 통, 반, 총인구수, 남자인구수, 여자인구수, 만0~9세남자, …, 만100세이상남자, 만0세여자, …, 만100세이상여자수를 조회","gwSvcNm":"selectAdmmSexdAgePpltn","operationId":"selectAdmmSexdAgePpltn","publicDataTyDetailCode":"PRDE02","reqList":[{"paramtrNm":"serviceKey","paramtrBassValue":"-","paramtrDc":"인증키. 공공데이터포털에서 발급받은 인증키","paramtrTy":"string","paramtrDivision":"필수","ck":true},{"paramtrNm":"admmCd","paramtrBassValue":"1111054000","paramtrDc":"행정기관코드 자료확인(행정안전부 홈페이지  https://www.mois.go.k
+--- swagger @147030
+tton>
+                    </li>
+                </ul>
+            </div>
+            <div class="tab-conts-wrap">
+                <section id="openTabpanel01" role="tabpanel" aria-labelledby="openTab01" class="tab-conts active" data-quick-nav="false">
+                    
+                        
+                            <div class="data-info-tit">
+                                <h3>활용명세</h3>
+                                <div class="btn-group">
+                                    <button type="button" class="krds-btn text medium open-modal" data-target="modal_guide_01">오픈 API 명세 확인 가이드<i class="svg-icon ico-angle right"></i></button>
+                                    <button type="button" class="krds-btn text medium guide-down">
+                                        가이드 다운로드<i class="svg-icon ico-down"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="data-report">
+                                <div class="line-box type2">
+                                    
+                                        
+                                            <div id="api-swagger"></div>
+                                        
+                                        
+                                    
+                                </div>
+                            </div>
+                        
+                        
+                    
+                </section>
+                <!-- 활용사례 -->
+                <section id="openTabpanel02" role="tabpanel" aria-labelledby="openTab02" class="tab-conts" data-quick-nav="false">
+                </section>
+                <section id="openTabpanel03" role="tabpanel" aria-labelledby="openTab03" class="tab-conts
