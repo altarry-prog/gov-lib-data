@@ -28,6 +28,7 @@ jobs:
           KOPIS_KEY: ${{ secrets.KOPIS_KEY }}
           KCISA_BOOKSTORE_KEY: ${{ secrets.KCISA_BOOKSTORE_KEY }}
           KCISA_USEDBOOK_KEY: ${{ secrets.KCISA_USEDBOOK_KEY }}
+          KCISA_PRESS_KEY: ${{ secrets.KCISA_PRESS_KEY }}
         run: python3 collectors/culture_api.py run --only "${{ github.event.inputs.only }}"
       - name: 반영
         run: |

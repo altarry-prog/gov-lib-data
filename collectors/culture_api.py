@@ -86,11 +86,14 @@ JOBS = [
     {"id": "kopis-venues", "name": "공연시설(KOPIS)", "kind": "facility", "key": "KOPIS_KEY", "xml": True,
      "url": "https://www.kopis.or.kr/openApi/restful/prfplc", "keyparam": "service", "params": {},
      "page": ("cpage", "rows", 100), "src": "https://www.kopis.or.kr/por/cs/openapi/openApiInfo.do"},
-    # 문화공공데이터광장: 호출 주소를 원천 안내 화면에서 찾는다
-    *[{"id": k, "name": n, "kind": "facility", "key": env, "kcisa_page": pid,
-       "params": {}, "page": ("pageNo", "numOfRows", 1000), "src": f"https://www.culture.go.kr/data/openapi/openapiView.do?id={pid}"}
-      for k, n, env, pid in [("indie-bookstores", "전국 독립서점", "KCISA_BOOKSTORE_KEY", 623),
-                             ("used-bookstores", "전국 중고서점", "KCISA_USEDBOOK_KEY", 547)]],
+    # 문화공공데이터광장(한국문화정보원): 키는 API마다 메일로 따로 발급. 호출 주소는 원천 안내 화면(swagger)에서 확인(2026-11-26)
+    *[{"id": k, "name": n, "kind": "facility", "key": env,
+       "url": [f"https://api.kcisa.kr/openapi/{api}/request", f"https://api.kcisa.kr/{api}/request"],
+       "params": {}, "page": ("pageNo", "numOfRows", 1000),
+       "src": f"https://www.culture.go.kr/data/openapi/openapiView.do?id={pid}"}
+      for k, n, env, pid, api in [("indie-bookstores", "전국 독립서점", "KCISA_BOOKSTORE_KEY", 623, "API_CIA_089"),
+                                  ("used-bookstores", "전국 중고서점", "KCISA_USEDBOOK_KEY", 547, "API_CNV_045"),
+                                  ("mcst-press", "문체부 및 소속기관 보도자료", "KCISA_PRESS_KEY", 549, "API_CNV_046")]],
 ]
 
 
