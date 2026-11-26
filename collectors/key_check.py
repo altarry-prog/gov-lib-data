@@ -14,8 +14,13 @@ CHECKS = {
     "KOBIS_KEY": "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key={k}&targetDt=" + D,
     "SEOUL_KEY": "http://openapi.seoul.go.kr:8088/{k}/json/SeoulPublicLibraryInfo/1/1/",
     "GG_KEY": "https://openapi.gg.go.kr/Tbggibllbrm?KEY={k}&Type=json&pIndex=1&pSize=1",
+    "NL_KEY": "https://www.nl.go.kr/NL/search/openApi/search.do?key={k}&apiType=json&kwd=%EB%8F%84%EC%84%9C%EA%B4%80&pageSize=1&pageNum=1",
     "LAW_OC": "https://www.law.go.kr/DRF/lawSearch.do?OC={k}&target=ordin&type=JSON&query=%EB%8F%84%EC%84%9C%EA%B4%80&display=1",
 }
+
+
+PRESENCE_ONLY = ["KCISA_KEY", "KCISA_PRESS_KEY", "KCISA_BOOKSTORE_KEY", "KCISA_USEDBOOK_KEY",
+                 "KCISA_POLICY_KR_KEY", "KCISA_POLICY_INTL_KEY", "KCISA_NLCY_RECO_KEY", "KCISA_NEWBOOK_KEY"]
 
 
 def check(name, tmpl, get=None):
@@ -36,6 +41,8 @@ def check(name, tmpl, get=None):
 
 def main():
     res = {"확인일": dt.date.today().isoformat(), "결과": {n: check(n, t) for n, t in CHECKS.items()}}
+    for n in PRESENCE_ONLY:
+        res["결과"][n] = {"등록": bool(os.environ.get(n, "").strip()), "비고": "등록 여부만 확인(호출 주소는 수집기에서)"}
     os.makedirs("data/_check", exist_ok=True)
     with open("data/_check/keys.json", "w", encoding="utf-8") as f:
         json.dump(res, f, ensure_ascii=False, indent=2)

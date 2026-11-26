@@ -20,6 +20,15 @@ jobs:
           SEOUL_KEY: ${{ secrets.SEOUL_KEY }}
           GG_KEY: ${{ secrets.GG_KEY }}
           LAW_OC: ${{ secrets.LAW_OC }}
+          NL_KEY: ${{ secrets.NL_KEY }}
+          KCISA_KEY: ${{ secrets.KCISA_KEY }}
+          KCISA_PRESS_KEY: ${{ secrets.KCISA_PRESS_KEY }}
+          KCISA_BOOKSTORE_KEY: ${{ secrets.KCISA_BOOKSTORE_KEY }}
+          KCISA_USEDBOOK_KEY: ${{ secrets.KCISA_USEDBOOK_KEY }}
+          KCISA_POLICY_KR_KEY: ${{ secrets.KCISA_POLICY_KR_KEY }}
+          KCISA_POLICY_INTL_KEY: ${{ secrets.KCISA_POLICY_INTL_KEY }}
+          KCISA_NLCY_RECO_KEY: ${{ secrets.KCISA_NLCY_RECO_KEY }}
+          KCISA_NEWBOOK_KEY: ${{ secrets.KCISA_NEWBOOK_KEY }}
         run: python3 collectors/key_check.py
       - name: 반영
         run: |
