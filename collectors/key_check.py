@@ -10,7 +10,7 @@ import urllib.request
 D = (dt.date.today() - dt.timedelta(days=2)).strftime("%Y%m%d")
 CHECKS = {
     "DATA_GO_KR_KEY": "https://api.data.go.kr/openapi/tn_pubr_public_lbrry_api?serviceKey={k}&type=json&pageNo=1&numOfRows=1",
-    "KOPIS_KEY": "http://www.kopis.or.kr/openApi/restful/pblprfr?service={k}&stdate=" + D + "&eddate=" + D + "&cpage=1&rows=1",
+    "KOPIS_KEY": "https://www.kopis.or.kr/openApi/restful/pblprfr?service={k}&stdate=" + D + "&eddate=" + D + "&cpage=1&rows=1",
     "KOBIS_KEY": "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key={k}&targetDt=" + D,
     "SEOUL_KEY": "http://openapi.seoul.go.kr:8088/{k}/json/SeoulPublicLibraryInfo/1/1/",
     "GG_KEY": "https://openapi.gg.go.kr/Tbggibllbrm?KEY={k}&Type=json&pIndex=1&pSize=1",
