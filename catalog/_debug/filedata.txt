@@ -1,0 +1,272 @@
+DO=//www.data.go.kr/data/15062804/fileData.do //www.data.go.kr/ugs/selectPortalPolicyView.do /bbs/cnm/selectCardNews.do /bbs/cnm/selectCardNewsListView.do /bbs/dnb/selectDeveloperNetworkListView.do /bbs/dnb/selectDeveloperNetworkView.do /bbs/dnb/updateDeveloperNetworkView.do /bbs/dsb/selectDataShareContentsListView.do /bbs/faq/selectFaqList.do /bbs/ntc/selectNotice.do /bbs/ntc/selectNoticeListView.do /bbs/rcr/selectRecsroomList.do /biz/dcat/metadata/15062804.do /en/index.do /iim/api/myPageUrl.do /iim/main/mypageMain.do /index.do /llm/sch/curation/curationList.do /mcp/mcpDataList.do /mcp/mcpDataView.do /odmc/archive/index.do /odmc/intro/index.do /odmc/trublMdat/activityStatus/index.do /odmc/trublMdat/mdatStatistics/index.do /odsc/activity/meetingStatus/index.do /odsc/committeeMember/index.do /odsc/intro/index.do /osd/eduSupport.do /osd/opensquare.do /osd/serviceReport.do /problem/main.do /rest/column_defs/codes/search.do /suc/awardWinning.do /suc/faqList.do /suc/preliminaryRound.do /suc/startup.do /tcs/dor/insertDataOfferReqstDocView.do /tcs/dor/insertDataOfferReqstProcssView.do /tcs/dor/insertTrublMdatReqstDocView.do /tcs/dor/insertTrublMdatReqstProcssView.do /tcs/dss/aiAssistant.do /tcs/dss/getOrCreateQuickSummary.do /tcs/dss/hybridSearch.do /tcs/dss/redirectDevAcountRequestForm.do /tcs/dss/selectApiDataDetailView.do /tcs/dss/selectDataSetList.do /tcs/eds/ctm/selectContestDataList.do /tcs/eds/selectCoreDataListView.do /tcs/eds/selectCoreDataView.do /tcs/lms/liv/selectLocationView.do /tcs/lms/lvl/introduce.do /tcs/lms/lvl/selectAssignmentApplyProposalList.do /tcs/lms/lvl/selectAssignmentCompletedProposalList.do /tcs/lms/lvl/selectAssignmentProgressProposalList.do /tcs/lms/lvl/selectProposalSubjectList.do /tcs/lms/lvl/selectVoteSubjectList.do /tcs/lms/mpm/memberMapList.do /tcs/opd/ndm/view.do /tcs/puc/selectPublicUseCaseListView.do /tcs/vas/selectVisualizationListView.do /ugs/selectPortalInfoView.do /ugs/selectPortalPolicyView.do /ugs/selectPublicDataQlityView.do /ugs/selectPublicDataUseGuideView.do /uim/login/actionLogout.do /uim/login/loginView.do /uim/login/signupView.do 23c7b3ac-05a4-4cab-ac87-d724f0c9980d/columnDefExcel.do
+--- atchFileId @213125
+$('#fileLimitCheck').removeClass('in');
+    }
+    
+    function checkCaptcha() {
+    	
+    	if ($('#captchaCmm').val().trim() === '') {
+    		alert('자동등록 방지 문자를 입력해주세요.');
+    		$('#captchaCmm').focus();
+    		return;
+    	}
+    	
+    	if (fn_compareCaptCha('captchaCmm')) {
+    		$.ajax({
+    			url: '/cmm/cmm/check-reset.json',
+    			type: 'POST',
+    			dataType: 'json',
+    			data: {
+    				atchFileId: $('#limitAtchFileId').val(),
+    				fileDetailSn: $('#limitFileDetailSn').val()
+    			},
+    			success: function(res) {
+    				if (res.success) {
+    					alert("인증이 완료되었습니다. 다시 다운로드 시도해주세요.");		
+    				} else {
+    					alert('처리 중 오류가 발생했습니다. 다시 시도해 주십시오.');
+    				}
+					closeFileLimitModal();
+    			},
+    			error: function(xhr) {
+    				alert('장애가 발생했습니다. 다시 시도해 주십시오.');
+ 
+--- fn_fileData @141878
+     공공데이터활용지원센터_공공데이터포털 목록개방현황
+                                                </div>
+                                                <div class="btn-wrap">
+                                                    
+                                                    <button type="button" class="krds-btn medium primary"
+                                                            onclick="fileDetailObj.fn_fileDataDown('15062804', 'uddi:23c7b3ac-05a4-4cab-ac87-d724f0c9980d', '','1', '1')">
+                                                        다운로드 <i class="svg-icon ico-down"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </li>
+   
+--- download @146323
+         <li>
+            <strong class="key">데이터 항목(컬럼) 정보</strong>
+            <div class="value">
+              <div class="btn-group">
+                <button type="button" class="krds-btn xsmall tertiary dataCol-btn">데이터 항목(컬럼) 정보 펼쳐보기<i class="svg-icon ico-angle down"></i></button>
+                
+                <button type="button" class="krds-btn xsmall tertiary" onclick="window.open('/download/uddi:23c7b3ac-05a4-4cab-ac87-d724f0c9980d/columnDefExcel.do?fileName=%EA%B3%B5%EA%B3%B5%EB%8D%B0%EC%9D%B4%ED%84%B0%ED%99%9C%EC%9A%A9%EC%A7%80%EC%9B%90%EC%84%BC%ED%84%B0_%EA%B3%B5%EA%B3%B5%EB%8D%B0%EC%9D%B4%ED%84%B0%ED%8F%AC%ED%84%B8+%EB%AA%A9%EB%A1%9D%EA%B0%9C%EB%B0%A9%ED%98%84%ED%99%A9&publicDataHistSn=1', '_blank')">
+                  컬럼 정의서 다운로드<i class="svg-icon ico-down"></i>
+       
+--- download @195916
+, subject) {
+        $(this).prop("title", $("#contents").find("h2").not(".detail-section-heading").text() + " | 공공데이터포털");
+
+        // favorObj.addCookie(pk, dType, subject);
+
+        fileDetailObj.fn_histAndCsvData(pk, detailPk)
+        fileDetailObj.fn_personalRecommendData(pk);
+        fileDetailObj.fn_recommendData(pk);
+        // 퀵 서머리
+        executeSearch(pk);
+
+        $(".recommend-after-download button:first").css('display', 'none');
+
+        if(window.location.search.includes("dataMap")){
+            const goListBtn = document.getElementById("goListBtn");
+            goListBtn.textContent = "닫기";
+            goListBtn.title = "페이지를 닫기";
+        }
+    }
+
+    function buttonEvent(pk) {
+        const $likeBtn = $('#likeBtn');
+        const $hateBtn = $('#hateBtn');
+        const $a
+--- download @198910
+SINESS" && mberSttus === 'MBST01' ? await showModal(mberTy) : "";
+
+            fn_setCookie("currentMyMenuId", "M020105", 1);
+            window.open(
+                "/tcs/dss/redirectDevAcountRequestForm.do?publicDataPk=" +
+                publicDataPk +
+                "&isBusinessApply=" +
+                isBusinessApply,
+                "_blank"
+            );
+            $(".recommend-after-download").slideDown();
+        } catch (error) {
+            alert("서비스 장애가 발생했습니다. 잠시 후 다시 시도해 주십시오.");
+            return;
+        }
+
+        async function showModal(mberTy) {
+            return new Promise((resolve) => {
+                krds_modal.openModal("business-select-modal");
+
+                $("#confirmY").click(() => {
+                    resolve("Y");
+                });
+
+          
+--- uddi: @133358
+l class="location breadcrumb">
+		<li class="home">
+			<a href="/index.do" class="txt">홈</a>
+		</li>
+		<li class="locationDepth1 txt"></li>
+		<li class="locationDepth2 txt"></li>
+	</ol>
+</nav>
+
+										
+									
+                                
+                                
+
+
+
+
+
+
+ 
+
+<div class="contents data">
+
+    <input type="hidden" id="publicDataDetailPk" name="publicDataDetailPk" value="uddi:23c7b3ac-05a4-4cab-ac87-d724f0c9980d" />
+    <input type="hidden" id="publicDataPk" name="publicDataPk" value="15062804"  />
+    <input type="hidden" id="updtDt" name="updtDt" value="2026-11-05 17:20:04.000"  />
+
+    <div class="data-info-area">
+        <div class="data-info-top">
+            <!-- page-title : 파일유형 카테고리가 없는 경우 -->
+            <div class="page-title-wrap">
+                <div
+--- uddi: @141907
+현황
+                                                </div>
+                                                <div class="btn-wrap">
+                                                    
+                                                    <button type="button" class="krds-btn medium primary"
+                                                            onclick="fileDetailObj.fn_fileDataDown('15062804', 'uddi:23c7b3ac-05a4-4cab-ac87-d724f0c9980d', '','1', '1')">
+                                                        다운로드 <i class="svg-icon ico-down"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </li>
+                                
+--- uddi: @142770
+              </div>
+                        </div>
+                        
+
+
+
+
+
+
+  <!-- 파일데이터 상세 -->
+  <div id="tab-layer-file-01" class="section-link">
+    
+
+
+
+
+
+
+ <div class="data-info-tit">
+  <h2 class="detail-section-heading">파일데이터 정보</h2>
+  <div class="btn-group">
+    <strong>데이터 오류·개선 의견이 있으신가요?</strong>
+    <button type="button" onclick="fn_callDataImproveReportPopup('', 'F', '15062804','uddi:23c7b3ac-05a4-4cab-ac87-d724f0c9980d', '');" class="krds-btn text small" data-target="modal_p00-011">데이터 개선요청<i class="svg-icon ico-angle right"></i></button>
+    <button type="button" onclick="fn_callErrorReportPopup('', 'F', '15062804','uddi:23c7b3ac-05a4-4cab-ac87-d724f0c9980d', '');" class="krds-btn text small" data-target="modal_p00-012">오류신고 및 문의<i class="svg-icon ico-angle right"></i><
+--- publicDataDetailPk @133305
+adcrumb-wrap" aria-label="현재 경로" id="breadcrumb">
+	<ol class="location breadcrumb">
+		<li class="home">
+			<a href="/index.do" class="txt">홈</a>
+		</li>
+		<li class="locationDepth1 txt"></li>
+		<li class="locationDepth2 txt"></li>
+	</ol>
+</nav>
+
+										
+									
+                                
+                                
+
+
+
+
+
+
+ 
+
+<div class="contents data">
+
+    <input type="hidden" id="publicDataDetailPk" name="publicDataDetailPk" value="uddi:23c7b3ac-05a4-4cab-ac87-d724f0c9980d" />
+    <input type="hidden" id="publicDataPk" name="publicDataPk" value="15062804"  />
+    <input type="hidden" id="updtDt" name="updtDt" value="2026-11-05 17:20:04.000"  />
+
+    <div class="data-info-area">
+        <div class="data-info-top">
+            <!-- page-title : 파일유형 카테고리가 없는 경우 -->
+         
+--- publicDataDetailPk @133331
+현재 경로" id="breadcrumb">
+	<ol class="location breadcrumb">
+		<li class="home">
+			<a href="/index.do" class="txt">홈</a>
+		</li>
+		<li class="locationDepth1 txt"></li>
+		<li class="locationDepth2 txt"></li>
+	</ol>
+</nav>
+
+										
+									
+                                
+                                
+
+
+
+
+
+
+ 
+
+<div class="contents data">
+
+    <input type="hidden" id="publicDataDetailPk" name="publicDataDetailPk" value="uddi:23c7b3ac-05a4-4cab-ac87-d724f0c9980d" />
+    <input type="hidden" id="publicDataPk" name="publicDataPk" value="15062804"  />
+    <input type="hidden" id="updtDt" name="updtDt" value="2026-11-05 17:20:04.000"  />
+
+    <div class="data-info-area">
+        <div class="data-info-top">
+            <!-- page-title : 파일유형 카테고리가 없는 경우 -->
+            <div class="page-title-
+--- csv @195125
+',
+            dom_id: '#swagger-ui',
+            deepLinking: true,
+            presets: [
+                SwaggerUIBundle.presets.apis,
+                SwaggerUIStandalonePreset
+            ],
+            plugins: [
+                SwaggerUIBundle.plugins.DownloadUrl
+            ],
+            layout: "StandaloneLayout"
+        });//</editor-fold>
+    };
+
+    $(function() {
+        const ext = "csv";
+        $('.page-title-etc .file-ext-css').addClass(FileUtil.getCategoryClass(ext));
+
+        const pk = "15062804";
+        const detailPk = "uddi:23c7b3ac-05a4-4cab-ac87-d724f0c9980d";
+        const dType = "file";
+        const subject = "공공데이터활용지원센터_공공데이터포털 목록개방현황";
+        init(pk, detailPk, dType, subject);
+        buttonEvent(pk);
+    })
+
+    function init(pk, detailPk, dType, subject
