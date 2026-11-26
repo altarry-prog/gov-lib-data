@@ -232,12 +232,17 @@ def http_get(url, timeout=40):
     return data
 
 
-def fetch_one(pk, get=http_get, delay=1.5, today=None):
+def fetch_one(pk, get=http_get, delay=1.5, today=None, dump=None):
     today = today or dt.date.today().isoformat()
     src = PAGE.format(pk=pk)
     res = {"pk": str(pk), "원천": src, "수집일": today, "이용조건": LICENSE, "상태": "실패", "비고": []}
     try:
-        page = parse_page(get(src).decode("utf-8", "replace"))
+        raw = get(src).decode("utf-8", "replace")
+        if dump:  # 화면 구조 확인용(Actions 실행 결과물로만 올리고 커밋하지 않음)
+            os.makedirs(dump, exist_ok=True)
+            with open(os.path.join(dump, f"{pk}.html"), "w", encoding="utf-8") as f:
+                f.write(raw)
+        page = parse_page(raw)
     except Exception as e:  # noqa: BLE001
         res["비고"].append("상세 화면을 못 읽음: " + mask(str(e))[:160])
         return res
@@ -271,7 +276,7 @@ def fetch_one(pk, get=http_get, delay=1.5, today=None):
     return res
 
 
-def run(root=".", only=None, get=http_get, delay=1.5, today=None, log=print):
+def run(root=".", only=None, get=http_get, delay=1.5, today=None, log=print, dump=None):
     with open(os.path.join(root, CANDIDATES), encoding="utf-8") as f:
         cands = json.load(f)["candidates"]
     if only:
@@ -283,7 +288,7 @@ def run(root=".", only=None, get=http_get, delay=1.5, today=None, log=print):
     for i, c in enumerate(cands):
         if i:
             time.sleep(delay)
-        r = fetch_one(c["pk"], get=get, delay=delay, today=today)
+        r = fetch_one(c["pk"], get=get, delay=delay, today=today, dump=dump)
         r["후보 이름"], r["쓰는 곳"] = c.get("이름", ""), c.get("쓰는 곳", "")
         with open(os.path.join(out_dir, f"{c['pk']}.json"), "w", encoding="utf-8") as f:
             json.dump(r, f, ensure_ascii=False, indent=1)
@@ -309,8 +314,9 @@ def main(argv=None):
     r = sub.add_parser("run")
     r.add_argument("--only", default="")
     r.add_argument("--delay", type=float, default=1.5)
+    r.add_argument("--dump", default="", help="원본 화면을 이 폴더에 저장(커밋 금지, Actions 결과물로만)")
     a = ap.parse_args(argv)
-    idx = run(only=[x for x in a.only.split(",") if x.strip()] or None, delay=a.delay)
+    idx = run(only=[x for x in a.only.split(",") if x.strip()] or None, delay=a.delay, dump=a.dump or None)
     bad = [x for x in idx if x["상태"] == "실패"]
     print(f"명세 {len(idx)}건 (성공 {sum(x['상태'] == '성공' for x in idx)}, 일부 {sum(x['상태'] == '일부' for x in idx)}, 실패 {len(bad)})")
     return 0
