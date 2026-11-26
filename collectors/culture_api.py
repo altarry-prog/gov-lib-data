@@ -56,7 +56,7 @@ JOBS = [
                                                                "tourist_performance_venues"], 15154970)]],
     {"id": "nl-libraries", "name": "국립중앙도서관 도서관 정보", "kind": "facility", "key": "DATA_GO_KR_KEY",
      "url": f"{DG}/1371029/LibraryInformationService/getLibraryList", "params": {"type": "json"},
-     "page": ("pageNo", "numOfRows", 1000), "src": "https://www.data.go.kr/data/15154373/openapi.do"},
+     "page": ("pageNo", "numOfRows", 1000), "max_pages": 2000, "src": "https://www.data.go.kr/data/15154373/openapi.do"},
     {"id": "sports-facilities", "name": "공공체육시설(국민체육진흥공단)", "kind": "facility", "key": "DATA_GO_KR_KEY",
      "url": f"{DG}/B551014/SRVC_SFMS_FACIL_INFO/TODZ_SFMS_FACIL_INFO", "params": {"resultType": "json"},
      "page": ("pageNo", "numOfRows", 1000), "src": "https://www.data.go.kr/data/15107764/openapi.do"},
@@ -99,14 +99,14 @@ JOBS = [
 
 def http_get(url, timeout=60):
     req = urllib.request.Request(url, headers={"User-Agent": "gov-lib-data", "Accept": "application/json, */*"})
-    for attempt in range(3):
+    for attempt in range(5):
         try:
             with urllib.request.urlopen(req, timeout=timeout) as r:
                 return r.read().decode("utf-8", "replace")
         except Exception:
-            if attempt == 2:
+            if attempt == 4:
                 raise
-            time.sleep(3 * (attempt + 1))
+            time.sleep(5 * (attempt + 1))
 
 
 def redact(text, key):
@@ -269,11 +269,12 @@ def run_job(job, get=http_get, max_pages=200, log=print):
                 time.sleep(0.3)
             if rows:
                 if yr:
-                    note = f"{job['year_param']}={yr}"
+                    note = (note + " " if note else "") + f"{job['year_param']}={yr}"
                 break
         if rows:
             break
-    return {"상태": "성공" if rows else "실패", "rows": rows, "fields": sorted(fields), "url": used_url, "비고": note}
+    status = "실패" if not rows else ("일부" if note and not note.startswith(job.get("year_param") or "\0") else "성공")
+    return {"상태": status, "rows": rows, "fields": sorted(fields), "url": used_url, "비고": note}
 
 
 def save(job, res, root=ROOT, today=None):

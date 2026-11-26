@@ -47,3 +47,19 @@ class T(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TPartial(unittest.TestCase):
+    def test_partial_marked(self):
+        os.environ["ZZ_KEY"] = "K"
+        calls = {"n": 0}
+        page = json.dumps({"items": [{"a": i, "ROAD_NM_ADDR": "경기도 부천시"} for i in range(2)]})
+
+        def get(u):
+            calls["n"] += 1
+            if calls["n"] > 1:
+                raise OSError("timed out")
+            return page
+        job = {"id": "x", "name": "x", "kind": "business", "key": "ZZ_KEY", "src": "s", "url": "https://e/x",
+               "page": ("pageNo", "numOfRows", 2)}
+        self.assertEqual(ca.run_job(job, get=get, max_pages=5)["상태"], "일부")
