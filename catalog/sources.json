@@ -1,0 +1,14 @@
+{
+  "기준일": "2026-11-26",
+  "설명": "수집 대상 목록. 상태: 수집중 / 예정 / 검토. 키: 없음 / 포털키(공공데이터포털) / 기관키 / 파일",
+  "sources": [
+    {"id": "ordinance", "이름": "지자체 도서관·독서 자치법규", "기관": "법제처 국가법령정보센터(변환본 legalize-kr)", "주소": "https://github.com/legalize-kr/ordinance-kr", "키": "없음", "단위": "지자체", "상태": "수집중"},
+    {"id": "lib-std", "이름": "전국도서관표준데이터", "기관": "공공데이터포털", "주소": "https://api.data.go.kr/openapi/tn_pubr_public_lbrry_api", "키": "포털키", "단위": "도서관", "상태": "예정"},
+    {"id": "rgn-cltr-fclt", "이름": "지역문화통합정보시스템 OpenAPI(도서관·박물관·미술관·생활문화센터·문예회관·지방문화원·문화의집·지역문화재단·문학관)", "기관": "한국문화정보원", "주소": "https://www.culture.go.kr/local/gdnc/openApiView.do", "키": "포털키", "단위": "시설", "상태": "예정"},
+    {"id": "mois-culture-license", "이름": "행정안전부 문화 인허가(영화상영업·노래연습장업·관광공연장업 등)", "기관": "행정안전부", "주소": "https://www.data.go.kr/data/15154857/openapi.do", "키": "포털키", "단위": "업소", "상태": "예정"},
+    {"id": "tour-visitors", "이름": "한국관광공사 지역별 방문자수", "기관": "한국관광공사", "주소": "https://www.data.go.kr/data/15101972/openapi.do", "키": "포털키", "단위": "시군구·일", "상태": "예정"},
+    {"id": "regional-culture-survey", "이름": "지역문화실태조사(2023년 기준)", "기관": "문화체육관광부", "주소": "https://www.mcst.go.kr/site/s_notice/press/pressView.jsp?pSeq=21809", "키": "파일", "단위": "시군구", "상태": "검토"},
+    {"id": "heritage", "이름": "국가유산청 국가유산 검색", "기관": "국가유산청", "주소": "https://www.khs.go.kr/cha/SearchKindOpenapiList.do", "키": "없음", "단위": "유산", "상태": "검토"},
+    {"id": "d4l-agg", "이름": "정보나루 지역 인기대출·대출 집계(집계만 저장)", "기관": "국립중앙도서관 도서관 정보나루", "주소": "https://www.data4library.kr", "키": "기관키", "단위": "시군구·도서관", "상태": "예정"}
+  ]
+}
