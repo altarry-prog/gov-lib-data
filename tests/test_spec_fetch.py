@@ -127,6 +127,21 @@ class TSpec(unittest.TestCase):
                 index = json.load(f)
             self.assertEqual([x["pk"] for x in index["목록"]], ["15108072", "99999999"])
 
+    def test_embedded_specs(self):
+        raw = ('<script>var spec = {"swagger":"2.0","paths":{"/a":{"get":{"parameters":[{"name":"admmCd","required":true,"in":"query","description":"행정기관코드"}],'
+               '"responses":{"200":{"schema":{"type":"object","properties":{"totNmprCnt":{"description":"총인구","properties":{}}}}}}}}}};'
+               'var v = {"swaggerOprtinVOs":[{"oprtinUrl":"https://rdoa.jumin.go.kr/x/selectX","oprtinNm":"목록 조회","reqList":'
+               '[{"paramtrNm":"srchFrYm","paramtrDivision":"필수","paramtrDc":"조회시작년월 문의 02-123-4567"}]}]};</script>')
+        specs, ops = sf.embedded_specs(raw)
+        self.assertEqual(len(specs), 1)
+        s = sf.swagger_summary(specs[0])
+        self.assertEqual(s["경로"][0]["요청"][0]["이름"], "admmCd")
+        self.assertEqual(s["경로"][0]["응답"][0]["이름"], "totNmprCnt")
+        self.assertEqual((ops[0]["주소"], ops[0]["요청"][0]["이름"], ops[0]["요청"][0]["구분"]), ("https://rdoa.jumin.go.kr/x/selectX", "srchFrYm", "필수"))
+        self.assertNotIn("02-123-4567", json.dumps(ops, ensure_ascii=False))
+        r = sf.fetch_one("1", get=lambda u: raw.encode(), delay=0, today="2026-11-26")
+        self.assertEqual(r["상태"], "성공")
+
     def test_candidates_file(self):
         with open(os.path.join(os.path.dirname(__file__), "..", sf.CANDIDATES), encoding="utf-8") as f:
             c = json.load(f)["candidates"]

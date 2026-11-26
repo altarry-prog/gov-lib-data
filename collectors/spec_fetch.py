@@ -151,6 +151,38 @@ def parse_page(raw):
     }
 
 
+def embedded_specs(raw):
+    """화면 안에 박힌 swagger JSON(\"paths\")과 swaggerOprtinVOs(기능별 요청 변수) 를 꺼낸다(2026-11-26 화면 구조)."""
+    dec, specs, ops, seen = json.JSONDecoder(), [], [], set()
+    for m in re.finditer(r'"paths"\s*:\s*\{', raw):
+        starts = [i for i in range(m.start() - 1, max(-1, m.start() - 20000), -1) if raw[i] == "{"][:60]
+        for st in starts:
+            try:
+                obj, _ = dec.raw_decode(raw, st)
+            except ValueError:
+                continue
+            if isinstance(obj, dict) and isinstance(obj.get("paths"), dict) and obj["paths"]:
+                key = json.dumps(sorted(obj["paths"]))
+                if key not in seen:
+                    seen.add(key)
+                    specs.append(obj)
+                break
+    for m in re.finditer(r'"swaggerOprtinVOs"\s*:\s*\[', raw):
+        try:
+            arr, _ = dec.raw_decode(raw, m.end() - 1)
+        except ValueError:
+            continue
+        for o in arr if isinstance(arr, list) else []:
+            if not isinstance(o, dict):
+                continue
+            ops.append({"주소": o.get("oprtinUrl", ""), "기능": clean(o.get("oprtinNm", "")), "설명": clean(o.get("oprtinDc", ""))[:300],
+                        "요청": [{"이름": r.get("paramtrNm"), "구분": r.get("paramtrDivision"), "설명": clean(r.get("paramtrDc", ""))[:200]}
+                                 for r in o.get("reqList", []) if isinstance(r, dict)][:MAX_ROWS]})
+        break
+    return specs, ops
+
+
+W = "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}"
 W = "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}"
 
 
@@ -232,18 +264,26 @@ def http_get(url, timeout=40):
     return data
 
 
-def fetch_one(pk, get=http_get, delay=1.5, today=None):
+def fetch_one(pk, get=http_get, delay=1.5, today=None, dump=None):
     today = today or dt.date.today().isoformat()
     src = PAGE.format(pk=pk)
     res = {"pk": str(pk), "원천": src, "수집일": today, "이용조건": LICENSE, "상태": "실패", "비고": []}
     try:
-        page = parse_page(get(src).decode("utf-8", "replace"))
+        raw = get(src).decode("utf-8", "replace")
+        if dump:  # 화면 구조 확인용(Actions 실행 결과물로만 올리고 커밋하지 않음)
+            os.makedirs(dump, exist_ok=True)
+            with open(os.path.join(dump, f"{pk}.html"), "w", encoding="utf-8") as f:
+                f.write(raw)
+        page = parse_page(raw)
+        inline, ops = embedded_specs(raw)
     except Exception as e:  # noqa: BLE001
         res["비고"].append("상세 화면을 못 읽음: " + mask(str(e))[:160])
         return res
     res.update({k: v for k, v in page.items() if k != "참고문서 주소"})
     res["이용허락범위"] = page["항목"].get("이용허락범위", "화면에서 못 찾음")
-    specs, docs = [], []
+    specs = [{"주소": "화면에 포함", **swagger_summary(o)} for o in inline][:3]
+    res["기능"] = ops
+    docs = []
     for u in page["명세 주소"][:3]:
         time.sleep(delay)
         try:
@@ -264,14 +304,14 @@ def fetch_one(pk, get=http_get, delay=1.5, today=None):
         except Exception as e:  # noqa: BLE001
             docs.append({"주소": u, "종류": "못 받음", "비고": mask(str(e))[:120]})
     res["명세"], res["참고문서"] = specs, docs
-    got_params = bool(page["표"]) or any(s["경로"] for s in specs) or any(d.get("표") for d in docs)
-    res["상태"] = "성공" if (page["주소 후보"] or specs) and got_params else ("일부" if (page["제목"] or page["표"]) else "실패")
-    if not page["주소 후보"] and not specs:
+    got_params = bool(page["표"]) or any(s["경로"] for s in specs) or any(d.get("표") for d in docs) or any(o["요청"] for o in ops)
+    res["상태"] = "성공" if (page["주소 후보"] or specs or any(o["주소"] for o in ops)) and got_params else ("일부" if (page["제목"] or page["표"]) else "실패")
+    if not page["주소 후보"] and not specs and not ops:
         res["비고"].append("호출 주소를 화면에서 못 찾음(파일데이터·표준데이터 화면일 수 있음)")
     return res
 
 
-def run(root=".", only=None, get=http_get, delay=1.5, today=None, log=print):
+def run(root=".", only=None, get=http_get, delay=1.5, today=None, log=print, dump=None):
     with open(os.path.join(root, CANDIDATES), encoding="utf-8") as f:
         cands = json.load(f)["candidates"]
     if only:
@@ -283,7 +323,7 @@ def run(root=".", only=None, get=http_get, delay=1.5, today=None, log=print):
     for i, c in enumerate(cands):
         if i:
             time.sleep(delay)
-        r = fetch_one(c["pk"], get=get, delay=delay, today=today)
+        r = fetch_one(c["pk"], get=get, delay=delay, today=today, dump=dump)
         r["후보 이름"], r["쓰는 곳"] = c.get("이름", ""), c.get("쓰는 곳", "")
         with open(os.path.join(out_dir, f"{c['pk']}.json"), "w", encoding="utf-8") as f:
             json.dump(r, f, ensure_ascii=False, indent=1)
@@ -309,8 +349,9 @@ def main(argv=None):
     r = sub.add_parser("run")
     r.add_argument("--only", default="")
     r.add_argument("--delay", type=float, default=1.5)
+    r.add_argument("--dump", default="", help="원본 화면을 이 폴더에 저장(커밋 금지, Actions 결과물로만)")
     a = ap.parse_args(argv)
-    idx = run(only=[x for x in a.only.split(",") if x.strip()] or None, delay=a.delay)
+    idx = run(only=[x for x in a.only.split(",") if x.strip()] or None, delay=a.delay, dump=a.dump or None)
     bad = [x for x in idx if x["상태"] == "실패"]
     print(f"명세 {len(idx)}건 (성공 {sum(x['상태'] == '성공' for x in idx)}, 일부 {sum(x['상태'] == '일부' for x in idx)}, 실패 {len(bad)})")
     return 0

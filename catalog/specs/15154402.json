@@ -3,7 +3,7 @@
  "원천": "https://www.data.go.kr/data/15154402/openapi.do",
  "수집일": "2026-11-26",
  "이용조건": "공공데이터포털 상세 화면의 이용허락범위를 따른다(아래 '이용허락범위' 칸). 이 파일은 명세 항목 이름·설명만 옮긴 것",
- "상태": "일부",
+ "상태": "성공",
  "비고": [],
  "제목": "문화체육관광부 국립중앙도서관_서지 정보 제공 서비스",
  "항목": {},
@@ -13,7 +13,3372 @@
  "명세 주소": [],
  "표": [],
  "이용허락범위": "화면에서 못 찾음",
- "명세": [],
+ "기능": [
+  {
+   "주소": "http://124.137.58.214/service/BookService/getbookList",
+   "기능": "도서 정보 서비스",
+   "설명": "도서 정보 서비스 조회를 할 수 있습니다.",
+   "요청": [
+    {
+     "이름": "serviceKey",
+     "구분": "필수",
+     "설명": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "이름": "pageNo",
+     "구분": "필수",
+     "설명": "페이지번호"
+    },
+    {
+     "이름": "numOfRows",
+     "구분": "필수",
+     "설명": "한 페이지 결과 수"
+    },
+    {
+     "이름": "type",
+     "구분": "필수",
+     "설명": "결과 타입\\t"
+    },
+    {
+     "이름": "label",
+     "구분": "옵션",
+     "설명": "표제명"
+    },
+    {
+     "이름": "controlNumber",
+     "구분": "옵션",
+     "설명": "제어번호"
+    }
+   ]
+  }
+ ],
+ "명세": [
+  {
+   "주소": "apis.data.go.kr/1371029/BookInformationService_v2",
+   "경로": [
+    {
+     "경로": "/getElectronicJournalList_v2",
+     "방식": "GET",
+     "요약": "전자저널 정보 서비스",
+     "요청": [],
+     "응답": [
+      {
+       "이름": "header",
+       "설명": "header"
+      },
+      {
+       "이름": "resultCode",
+       "설명": "결과코드"
+      },
+      {
+       "이름": "resultMsg",
+       "설명": "결과메세지"
+      },
+      {
+       "이름": "body",
+       "설명": "body"
+      },
+      {
+       "이름": "numOfRows",
+       "설명": "목록 건수"
+      },
+      {
+       "이름": "totalCount",
+       "설명": "총 개수\\t"
+      },
+      {
+       "이름": "pageNo",
+       "설명": "페이지 번호"
+      },
+      {
+       "이름": "items",
+       "설명": "items"
+      },
+      {
+       "이름": "item",
+       "설명": "item"
+      },
+      {
+       "이름": "DCTERMS_title",
+       "설명": "제목"
+      },
+      {
+       "이름": "NLON_titleOfOtherEdition",
+       "설명": "이판저록표제"
+      },
+      {
+       "이름": "BIBLIO_ID",
+       "설명": "국립중앙도서관제어번호_서지"
+      },
+      {
+       "이름": "URI",
+       "설명": "URI"
+      },
+      {
+       "이름": "RDFS_label",
+       "설명": "라벨"
+      },
+      {
+       "이름": "NLON_titleOfAdditionalPhysicalForm",
+       "설명": "기타형태저록표제"
+      },
+      {
+       "이름": "DCTERMS_accessRights",
+       "설명": "접근제한유형"
+      },
+      {
+       "이름": "NLON_locationNote",
+       "설명": "소재주기"
+      },
+      {
+       "이름": "NLON_dateOfPublicationSequentialDesignation",
+       "설명": "권연차또는발행년표시"
+      },
+      {
+       "이름": "BIBO_edition",
+       "설명": "판사항"
+      },
+      {
+       "이름": "DC_coverage",
+       "설명": "시공간적범위"
+      },
+      {
+       "이름": "NLON_abbreviatedTitle",
+       "설명": "축약표제"
+      },
+      {
+       "이름": "NLON_titleOfOriginalLanguage",
+       "설명": "원저저록표제"
+      },
+      {
+       "이름": "BIBO_shortTitle",
+       "설명": "단축표제"
+      },
+      {
+       "이름": "DCTERMS_requires",
+       "설명": "시스템사항에관한주기"
+      },
+      {
+       "이름": "NLON_preceding",
+       "설명": "선행저록"
+      },
+      {
+       "이름": "NLON_succeeding",
+       "설명": "후속저록"
+      },
+      {
+       "이름": "NLON_series",
+       "설명": "총서관계"
+      },
+      {
+       "이름": "NLON_supplementTo",
+       "설명": "모체레코드저록"
+      },
+      {
+       "이름": "DC_format",
+       "설명": "자료형식"
+      },
+      {
+       "이름": "NLON_volumeOfSeries",
+       "설명": "총서번호"
+      },
+      {
+       "이름": "NLON_publicationPlace",
+       "설명": "발행지"
+      },
+      {
+       "이름": "NLON_datePublished",
+       "설명": "데이터발행일시"
+      },
+      {
+       "이름": "NLON_restriction",
+       "설명": "이용제한주기"
+      },
+      {
+       "이름": "NLON_physicalFormAvailableNote",
+       "설명": "이용가능한다른형태자료"
+      },
+      {
+       "이름": "NLON_titleOfPreceding",
+       "설명": "선행저록표제"
+      },
+      {
+       "이름": "NLON_typeOfResource",
+       "설명": "콘텐츠유형"
+      },
+      {
+       "이름": "NLON_titleOfSucceeding",
+       "설명": "후속저록표제"
+      },
+      {
+       "이름": "DCTERMS_relation",
+       "설명": "비특정적관계저록(제어번호연결)"
+      },
+      {
+       "이름": "BIBO_translationOf",
+       "설명": "번역저록의원본"
+      },
+      {
+       "이름": "BIBO_doi",
+       "설명": "DOI"
+      },
+      {
+       "이름": "NLON_relatedNaturalAttraction",
+       "설명": "관련관광자원"
+      },
+      {
+       "이름": "NLON_uci",
+       "설명": "UCI"
+      },
+      {
+       "이름": "BIBO_degree",
+       "설명": "학위논문의 종류"
+      },
+      {
+       "이름": "BIBO_issn",
+       "설명": "ISSN"
+      },
+      {
+       "이름": "NLON_medium",
+       "설명": "자료형태"
+      },
+      {
+       "이름": "DCTERMS_issued",
+       "설명": "발행일"
+      },
+      {
+       "이름": "NLON_ddc",
+       "설명": "듀이십진분류기호"
+      },
+      {
+       "이름": "NLON_newsGenre",
+       "설명": "기사장르"
+      },
+      {
+       "이름": "NLON_gprn",
+       "설명": "한국정부간행물발간등록번호"
+      },
+      {
+       "이름": "NLON_citationReferenceNote",
+       "설명": "인용참고주기"
+      },
+      {
+       "이름": "DCTERMS_bibliographicCitation",
+       "설명": "서지인용"
+      },
+      {
+       "이름": "NLON_kdc",
+       "설명": "한국십진분류기호"
+      },
+      {
+       "이름": "NLON_antecedentSource",
+       "설명": "원시자료의정보원"
+      },
+      {
+       "이름": "BIBO_uri",
+       "설명": "외부기관URI"
+      },
+      {
+       "이름": "NLON_gpo",
+       "설명": "미국정부간행물번호"
+      },
+      {
+       "이름": "NLON_audienceNote",
+       "설명": "이용대상자주기"
+      },
+      {
+       "이름": "DCTERMS_tableOfContents",
+       "설명": "목차"
+      },
+      {
+       "이름": "OWL_sameAs",
+       "설명": "동일개체"
+      },
+      {
+       "이름": "DCTERMS_abstract",
+       "설명": "초록"
+      },
+      {
+       "이름": "DCTERMS_description",
+       "설명": "설명"
+      },
+      {
+       "이름": "RDFS_seeAlso",
+       "설명": "참고링크"
+      },
+      {
+       "이름": "DCTERMS_creator",
+       "설명": "창작자"
+      },
+      {
+       "이름": "NLON_titleOfConstituentUnit",
+       "설명": "구성단위저록표제"
+      },
+      {
+       "이름": "DCTERMS_subject",
+       "설명": "주제"
+      },
+      {
+       "이름": "BIBO_isbn",
+       "설명": "ISBN"
+      },
+      {
+       "이름": "DC_creator",
+       "설명": "창작자이름"
+      },
+      {
+       "이름": "NLON_keyword",
+       "설명": "키워드"
+      },
+      {
+       "이름": "DCTERMS_alternative",
+       "설명": "대체제목"
+      },
+      {
+       "이름": "DCTERMS_identifier",
+       "설명": "식별자"
+      },
+      {
+       "이름": "NLON_translatedAs",
+       "설명": "번역저록"
+      },
+      {
+       "이름": "NLON_exhibition",
+       "설명": "전시주기"
+      },
+      {
+       "이름": "NLON_hasSupplement",
+       "설명": "보유판및특별호저록"
+      },
+      {
+       "이름": "DCTERMS_language",
+       "설명": "언어"
+      },
+      {
+       "이름": "DCTERMS_hasFormat",
+       "설명": "기타형태저록"
+      },
+      {
+       "이름": "NLON_remainderOfTitle",
+       "설명": "표제관련정보"
+      },
+      {
+       "이름": "NLON_originalVersionNote",
+       "설명": "원본주기"
+      },
+      {
+       "이름": "NLON_holdingItemNote",
+       "설명": "소장본주기"
+      },
+      {
+       "이름": "NLON_titleOfSeries",
+       "설명": "총서표제"
+      },
+      {
+       "이름": "DC_publisher",
+       "설명": "발행처"
+      },
+      {
+       "이름": "NLON_languageNote",
+       "설명": "언어주기"
+      },
+      {
+       "이름": "DCTERMS_hasPart",
+       "설명": "구성자료"
+      },
+      {
+       "이름": "NLON_awardsNote",
+       "설명": "수상주기"
+      },
+      {
+       "이름": "NLON_bibliography",
+       "설명": "서지등주기"
+      },
+      {
+       "이름": "NLON_reproductionNote",
+       "설명": "복제주기"
+      },
+      {
+       "이름": "NLON_ddcn",
+       "설명": "듀이십진분류기호(기타)"
+      },
+      {
+       "이름": "NLON_kdcn",
+       "설명": "한국십진분류(기타)"
+      },
+      {
+       "이름": "NLON_numberingPeculiaritiesNote",
+       "설명": "특수한권차표시주기"
+      },
+      {
+       "이름": "NLON_titleOfHostItem",
+       "설명": "기본자료표제"
+      },
+      {
+       "이름": "DCTERMS_isPartOf",
+       "설명": "상위자료"
+      },
+      {
+       "이름": "BIBFRAME_extent",
+       "설명": "형태사항"
+      },
+      {
+       "이름": "NLON_holdingInstitution",
+       "설명": "소장기관"
+      },
+      {
+       "이름": "BIBO_volume",
+       "설명": "권차/편차"
+      },
+      {
+       "이름": "DC_relation",
+       "설명": "비특정적관계저록"
+      },
+      {
+       "이름": "NLON_relatedParts",
+       "설명": "관련부분"
+      },
+      {
+       "이름": "NLON_mainEntryHeading",
+       "설명": "상위총서저록기본표목"
+      },
+      {
+       "이름": "NLON_sourceOfInformation",
+       "설명": "권연차연월차사항확인자료명"
+      },
+      {
+       "이름": "NLON_titleOfMainSeries",
+       "설명": "상위총서저록표제"
+      },
+      {
+       "이름": "BIBO_abstract",
+       "설명": "초록정보"
+      },
+      {
+       "이름": "NLON_containedIn",
+       "설명": "포함자료"
+      },
+      {
+       "이름": "NLON_hasIssue",
+       "설명": "개별호"
+      },
+      {
+       "이름": "NLON_volumeOfNLK",
+       "설명": "국립중앙도서관권연차기호"
+      },
+      {
+       "이름": "NLON_typeOfData",
+       "설명": "자료구분"
+      },
+      {
+       "이름": "NLON_editionOfKDC",
+       "설명": "한국십진분류판표시"
+      },
+      {
+       "이름": "NLON_relatedPlace",
+       "설명": "관련장소"
+      },
+      {
+       "이름": "NLON_dateOfManufacture",
+       "설명": "제작년또는인쇄년"
+      },
+      {
+       "이름": "NLON_relatedOrganization",
+       "설명": "관련단체"
+      },
+      {
+       "이름": "NLON_relatedPerson",
+       "설명": "관련인물"
+      },
+      {
+       "이름": "BIBO_sici",
+       "설명": "SICI"
+      },
+      {
+       "이름": "BIBO_lccn",
+       "설명": "LCCN"
+      },
+      {
+       "이름": "NLON_otherNumber",
+       "설명": "기타분류기호"
+      },
+      {
+       "이름": "NLON_classificationNumberOfLC",
+       "설명": "미국의회도서관분류기호"
+      },
+      {
+       "이름": "NLON_genre",
+       "설명": "장르"
+      },
+      {
+       "이름": "NLON_uniformTitleOfSeries",
+       "설명": "통일표제(총서)"
+      },
+      {
+       "이름": "DCTERMS_hasVersion",
+       "설명": "이판저록"
+      },
+      {
+       "이름": "NLON_currentPublicationFrequency",
+       "설명": "현재간행빈도"
+      },
+      {
+       "이름": "NLON_newsPosition",
+       "설명": "기사위치"
+      },
+      {
+       "이름": "DCTERMS_created",
+       "설명": "생성일"
+      },
+      {
+       "이름": "NLON_scale",
+       "설명": "축척표시"
+      }
+     ]
+    },
+    {
+     "경로": "/getbookList_v2",
+     "방식": "GET",
+     "요약": "도서 정보 서비스",
+     "요청": [],
+     "응답": [
+      {
+       "이름": "header",
+       "설명": "header"
+      },
+      {
+       "이름": "resultCode",
+       "설명": "결과코드"
+      },
+      {
+       "이름": "resultMsg",
+       "설명": "결과메세지"
+      },
+      {
+       "이름": "body",
+       "설명": "body"
+      },
+      {
+       "이름": "items",
+       "설명": "items"
+      },
+      {
+       "이름": "item",
+       "설명": "item"
+      },
+      {
+       "이름": "BIBLIO_ID",
+       "설명": "국립중앙도서관제어번호_서지"
+      },
+      {
+       "이름": "URI",
+       "설명": "URI"
+      },
+      {
+       "이름": "DCTERMS_title",
+       "설명": "제목"
+      },
+      {
+       "이름": "RDFS_label",
+       "설명": "라벨"
+      },
+      {
+       "이름": "DC_creator",
+       "설명": "창작자이름"
+      },
+      {
+       "이름": "OWL_sameAs",
+       "설명": "동일개체"
+      },
+      {
+       "이름": "DCTERMS_relation",
+       "설명": "비특정적관계저록(제어번호연결)"
+      },
+      {
+       "이름": "RDFS_seeAlso",
+       "설명": "참고링크"
+      },
+      {
+       "이름": "DCTERMS_hasPart",
+       "설명": "구성자료"
+      },
+      {
+       "이름": "DCTERMS_tableOfContents",
+       "설명": "목차"
+      },
+      {
+       "이름": "NLON_localHolding",
+       "설명": "소장사항"
+      },
+      {
+       "이름": "DCTERMS_hasVersion",
+       "설명": "이판저록"
+      },
+      {
+       "이름": "DCTERMS_creator",
+       "설명": "창작자"
+      },
+      {
+       "이름": "BIBO_isbn",
+       "설명": "ISBN"
+      },
+      {
+       "이름": "DCTERMS_abstract",
+       "설명": "초록"
+      },
+      {
+       "이름": "DCTERMS_hasFormat",
+       "설명": "기타형태저록"
+      },
+      {
+       "이름": "NLON_genre",
+       "설명": "장르"
+      },
+      {
+       "이름": "BIBO_translationOf",
+       "설명": "번역저록의원본"
+      },
+      {
+       "이름": "DCTERMS_alternative",
+       "설명": "대체제목"
+      },
+      {
+       "이름": "DCTERMS_description",
+       "설명": "설명"
+      },
+      {
+       "이름": "NLON_originalVersionNote",
+       "설명": "원본주기"
+      },
+      {
+       "이름": "NLON_hasSupplement",
+       "설명": "보유판및특별호저록"
+      },
+      {
+       "이름": "DCTERMS_subject",
+       "설명": "주제"
+      },
+      {
+       "이름": "NLON_keyword",
+       "설명": "키워드"
+      },
+      {
+       "이름": "NLON_cip",
+       "설명": "출판시도서목록(CIP)제어번호"
+      },
+      {
+       "이름": "NLON_uniformTitleOfSeries",
+       "설명": "통일표제(총서)"
+      },
+      {
+       "이름": "NLON_supplementTo",
+       "설명": "모체레코드저록"
+      },
+      {
+       "이름": "NLON_supplementNote",
+       "설명": "부록주기"
+      },
+      {
+       "이름": "NLON_remainderOfTitle",
+       "설명": "표제관련정보"
+      },
+      {
+       "이름": "NLON_preceding",
+       "설명": "선행저록"
+      },
+      {
+       "이름": "DCTERMS_isPartOf",
+       "설명": "상위자료"
+      },
+      {
+       "이름": "NLON_titleOfSupplementParent",
+       "설명": "모체레코드저록표제"
+      },
+      {
+       "이름": "NLON_titleOfSeries",
+       "설명": "총서표제"
+      },
+      {
+       "이름": "NLON_series",
+       "설명": "총서관계"
+      },
+      {
+       "이름": "DCTERMS_requires",
+       "설명": "시스템사항에관한주기"
+      },
+      {
+       "이름": "NLON_publicationPlace",
+       "설명": "발행지"
+      },
+      {
+       "이름": "NLON_succeeding",
+       "설명": "후속저록"
+      },
+      {
+       "이름": "NLON_titleOfTranslation",
+       "설명": "번역저록표제"
+      },
+      {
+       "이름": "NLON_titleOfSupplement",
+       "설명": "보유판및특별호저록표제"
+      },
+      {
+       "이름": "NLON_gprn",
+       "설명": "한국정부간행물발간등록번호"
+      },
+      {
+       "이름": "DCTERMS_identifier",
+       "설명": "식별자"
+      },
+      {
+       "이름": "NLON_linkingEntryComplexityNote",
+       "설명": "연관저록설명주기"
+      },
+      {
+       "이름": "DC_relation",
+       "설명": "비특정적관계저록"
+      },
+      {
+       "이름": "NLON_meetingInformation",
+       "설명": "회의정보"
+      },
+      {
+       "이름": "NLON_citationReferenceNote",
+       "설명": "인용참고주기"
+      },
+      {
+       "이름": "NLON_audienceNote",
+       "설명": "이용대상자주기"
+      },
+      {
+       "이름": "DC_publisher",
+       "설명": "발행처"
+      },
+      {
+       "이름": "BIBO_volume",
+       "설명": "권차/편차"
+      },
+      {
+       "이름": "NLON_awardsNote",
+       "설명": "수상주기"
+      },
+      {
+       "이름": "NLON_volumeOfNLK",
+       "설명": "국립중앙도서관권연차기호"
+      },
+      {
+       "이름": "NLON_physicalFormAvailableNote",
+       "설명": "이용가능한다른형태자료"
+      },
+      {
+       "이름": "NLON_exhibition",
+       "설명": "전시주기"
+      },
+      {
+       "이름": "NLON_titleOfPreceding",
+       "설명": "선행저록표제"
+      },
+      {
+       "이름": "NLON_translatedAs",
+       "설명": "번역저록"
+      },
+      {
+       "이름": "DCTERMS_language",
+       "설명": "언어"
+      },
+      {
+       "이름": "NLON_titleOfOtherEdition",
+       "설명": "이판저록표제"
+      },
+      {
+       "이름": "NLON_volumeOfSeries",
+       "설명": "총서번호"
+      },
+      {
+       "이름": "NLON_bibliography",
+       "설명": "서지등주기"
+      },
+      {
+       "이름": "NLON_uniformTitle",
+       "설명": "통일표제"
+      },
+      {
+       "이름": "BIBFRAME_extent",
+       "설명": "형태사항"
+      },
+      {
+       "이름": "NLON_languageNote",
+       "설명": "언어주기"
+      },
+      {
+       "이름": "NLON_medium",
+       "설명": "자료형태"
+      },
+      {
+       "이름": "NLON_holdingInstitution",
+       "설명": "소장기관"
+      },
+      {
+       "이름": "NLON_titleOfSucceeding",
+       "설명": "후속저록표제"
+      },
+      {
+       "이름": "NLON_numberingPeculiaritiesNote",
+       "설명": "특수한권차표시주기"
+      },
+      {
+       "이름": "BIBO_edition",
+       "설명": "판사항"
+      },
+      {
+       "이름": "NLON_reproductionNote",
+       "설명": "복제주기"
+      },
+      {
+       "이름": "NLON_titleOfOriginalLanguage",
+       "설명": "원저저록표제"
+      },
+      {
+       "이름": "NLON_titleOfAdditionalPhysicalForm",
+       "설명": "기타형태저록표제"
+      },
+      {
+       "이름": "NLON_issuingBodyNote",
+       "설명": "발행처주기"
+      },
+      {
+       "이름": "NLON_holdingItemNote",
+       "설명": "소장본주기"
+      },
+      {
+       "이름": "NLON_dateOfPublicationSequentialDesignation",
+       "설명": "권연차또는발행년표시"
+      },
+      {
+       "이름": "NLON_scale",
+       "설명": "축척표시"
+      },
+      {
+       "이름": "NLON_restriction",
+       "설명": "이용제한주기"
+      },
+      {
+       "이름": "NLON_relatedSpecies",
+       "설명": "관련생물종"
+      },
+      {
+       "이름": "NLON_projection",
+       "설명": "도법표시"
+      },
+      {
+       "이름": "NLON_headingOfOriginalLanguage",
+       "설명": "원저저록기본표목"
+      },
+      {
+       "이름": "NLON_gpo",
+       "설명": "미국정부간행물번호"
+      },
+      {
+       "이름": "NLON_keyTitle",
+       "설명": "등록표제"
+      },
+      {
+       "이름": "NLON_locationNote",
+       "설명": "소재주기"
+      },
+      {
+       "이름": "NLON_relatedHeritage",
+       "설명": "관련유산"
+      },
+      {
+       "이름": "NLON_titleOfSubSeries",
+       "설명": "하위총서표제"
+      },
+      {
+       "이름": "NLON_manufacturer",
+       "설명": "제작처"
+      },
+      {
+       "이름": "NLON_distributor",
+       "설명": "배포처"
+      },
+      {
+       "이름": "DCTERMS_issued",
+       "설명": "발행일"
+      },
+      {
+       "이름": "BIBO_issn",
+       "설명": "ISSN"
+      },
+      {
+       "이름": "NLON_issuedYear",
+       "설명": "발행연도"
+      },
+      {
+       "이름": "BIBO_identifier",
+       "설명": "협력기관제어번호"
+      },
+      {
+       "이름": "BIBO_uri",
+       "설명": "외부기관URI"
+      },
+      {
+       "이름": "NLON_itemNumberOfNLK",
+       "설명": "국립중앙도서관청구기호"
+      },
+      {
+       "이름": "NLON_kdc",
+       "설명": "한국십진분류기호"
+      },
+      {
+       "이름": "NLON_department",
+       "설명": "학과/전공"
+      },
+      {
+       "이름": "NLON_ddcn",
+       "설명": "듀이십진분류기호(기타)"
+      },
+      {
+       "이름": "NLON_datePublished",
+       "설명": "데이터발행일시"
+      },
+      {
+       "이름": "NLON_kdcn",
+       "설명": "한국십진분류(기타)"
+      },
+      {
+       "이름": "NLON_itemNumberOfLC",
+       "설명": "미국의회도서관도서기호"
+      },
+      {
+       "이름": "NLON_useAndReproductionNote",
+       "설명": "이용과복제제한에관한주기"
+      },
+      {
+       "이름": "NLON_biographicalNote",
+       "설명": "전기적또는역사적데이터"
+      },
+      {
+       "이름": "NLON_ddc",
+       "설명": "듀이십진분류기호"
+      },
+      {
+       "이름": "NLON_classificationNumberOfLC",
+       "설명": "미국의회도서관분류기호"
+      },
+      {
+       "이름": "NLON_relatedParts",
+       "설명": "관련부분"
+      },
+      {
+       "이름": "NLON_titleOfIssuedWith",
+       "설명": "동시발간저록표제"
+      },
+      {
+       "이름": "NLON_titleOfHostItem",
+       "설명": "기본자료표제"
+      },
+      {
+       "이름": "NLON_issnOfSeries",
+       "설명": "총서ISSN"
+      },
+      {
+       "이름": "DCTERMS_format",
+       "설명": "컴퓨터파일과데이터유형"
+      },
+      {
+       "이름": "NLON_manufacturingPlace",
+       "설명": "제작지"
+      },
+      {
+       "이름": "NLON_strn",
+       "설명": "표준기술보고서번호"
+      },
+      {
+       "이름": "NLON_formerTitle",
+       "설명": "변경전본표제"
+      },
+      {
+       "이름": "NLON_distributionPlace",
+       "설명": "배포지"
+      },
+      {
+       "이름": "NLON_classificationNumberOfNLK",
+       "설명": "국립중앙도서관분류기호"
+      },
+      {
+       "이름": "NLON_dateSequentialDesignation",
+       "설명": "변경전권연차표시"
+      },
+      {
+       "이름": "NLON_abbreviatedTitle",
+       "설명": "축약표제"
+      },
+      {
+       "이름": "BIBO_shortTitle",
+       "설명": "단축표제"
+      },
+      {
+       "이름": "NLON_relatedCountry",
+       "설명": "관련국가"
+      },
+      {
+       "이름": "NLON_otherNumber",
+       "설명": "기타분류기호"
+      },
+      {
+       "이름": "BIBO_coden",
+       "설명": "CODEN"
+      },
+      {
+       "이름": "NLON_producer",
+       "설명": "생산처"
+      },
+      {
+       "이름": "NLON_titleOfConstituentUnit",
+       "설명": "구성단위저록표제"
+      },
+      {
+       "이름": "NLON_relationshipInformation",
+       "설명": "관계정보"
+      },
+      {
+       "이름": "NLON_dateOfManufacture",
+       "설명": "제작년혹은인쇄년"
+      },
+      {
+       "이름": "NLON_issuedWith",
+       "설명": "동시발간저록"
+      },
+      {
+       "이름": "NLON_mainSeries",
+       "설명": "상위총서"
+      },
+      {
+       "이름": "NLON_subSeries",
+       "설명": "하위총서"
+      },
+      {
+       "이름": "BIBO_degree",
+       "설명": "학위논문의 종류"
+      },
+      {
+       "이름": "BIBO_lccn",
+       "설명": "LCCN"
+      },
+      {
+       "이름": "NLON_dateOfFormerPublicationFrequency",
+       "설명": "이전간행빈도시행연월"
+      },
+      {
+       "이름": "DC_type",
+       "설명": "유형"
+      },
+      {
+       "이름": "NLON_authenticationCode",
+       "설명": "검증기관부호"
+      },
+      {
+       "이름": "NLON_editionOfDDC",
+       "설명": "듀이십진분류기호판표시"
+      },
+      {
+       "이름": "NLON_formerPublicationFrequency",
+       "설명": "이전간행빈도"
+      },
+      {
+       "이름": "NLON_headingOfTranslation",
+       "설명": "번역저록기본표목"
+      },
+      {
+       "이름": "NLON_typeOfContinuousData",
+       "설명": "연속자료유형"
+      },
+      {
+       "이름": "NLON_typeOfData",
+       "설명": "자료구분"
+      },
+      {
+       "이름": "NLON_typeOfPublicationFrequency",
+       "설명": "간행빈도"
+      },
+      {
+       "이름": "NLON_typeOfPublicationStatus",
+       "설명": "간행상태"
+      },
+      {
+       "이름": "NLON_formerTitleComplexityNote",
+       "설명": "변경전표제설명주기"
+      },
+      {
+       "이름": "NLON_sourceOfOtherNumber",
+       "설명": "기타분류기호의 정보원"
+      },
+      {
+       "이름": "DCTERMS_dateCopyrighted",
+       "설명": "저작권표시연도"
+      },
+      {
+       "이름": "NLON_currentPublicationFrequency",
+       "설명": "현재간행빈도"
+      },
+      {
+       "이름": "NLON_nlkcn",
+       "설명": "NLKCN"
+      },
+      {
+       "이름": "NLON_itemNumberOfOtherNumber",
+       "설명": "기타도서기호"
+      },
+      {
+       "이름": "NLON_dateOfDistribute",
+       "설명": "배포년"
+      },
+      {
+       "이름": "NLON_dateOfCurrentPublicationFrequency",
+       "설명": "현재간행빈도시작연월"
+      },
+      {
+       "이름": "NLON_editionOfKDC",
+       "설명": "한국십진분류판표시"
+      },
+      {
+       "이름": "NLON_productionPlace",
+       "설명": "생산지"
+      },
+      {
+       "이름": "NLON_degreeYear",
+       "설명": "학위연도"
+      },
+      {
+       "이름": "DCTERMS_created",
+       "설명": "생성일"
+      },
+      {
+       "이름": "DC_format",
+       "설명": "자료형식"
+      },
+      {
+       "이름": "RDF_type",
+       "설명": "데이터유형"
+      },
+      {
+       "이름": "BIBFRAME_place",
+       "설명": "발행국부호"
+      },
+      {
+       "이름": "BIBFRAME_language",
+       "설명": "언어구분부호"
+      },
+      {
+       "이름": "NLON_governmentPublisher",
+       "설명": "정부발행부처"
+      },
+      {
+       "이름": "DCTERMS_accessRights",
+       "설명": "접근제한유형"
+      },
+      {
+       "이름": "BIBO_abstract",
+       "설명": "초록정보"
+      },
+      {
+       "이름": "NLON_containedIn",
+       "설명": "포함자료"
+      },
+      {
+       "이름": "NLON_hasIssue",
+       "설명": "개별호"
+      },
+      {
+       "이름": "NLON_mainEntryHeading",
+       "설명": "상위총서저록기본표목"
+      },
+      {
+       "이름": "NLON_sourceOfInformation",
+       "설명": "권연차연월차사항확인자료명"
+      },
+      {
+       "이름": "NLON_titleOfMainSeries",
+       "설명": "상위총서저록표제"
+      },
+      {
+       "이름": "totalCount",
+       "설명": "총 개수\\t"
+      },
+      {
+       "이름": "pageNo",
+       "설명": "페이지 번호"
+      },
+      {
+       "이름": "numOfRows",
+       "설명": "목록 건수"
+      }
+     ]
+    },
+    {
+     "경로": "/getNonbookList_v2",
+     "방식": "GET",
+     "요약": "비도서 정보 서비스",
+     "요청": [],
+     "응답": [
+      {
+       "이름": "header",
+       "설명": "header"
+      },
+      {
+       "이름": "resultCode",
+       "설명": "결과코드"
+      },
+      {
+       "이름": "resultMsg",
+       "설명": "결과메세지"
+      },
+      {
+       "이름": "body",
+       "설명": "body"
+      },
+      {
+       "이름": "items",
+       "설명": "items"
+      },
+      {
+       "이름": "item",
+       "설명": "item"
+      },
+      {
+       "이름": "BIBLIO_ID",
+       "설명": "국립중앙도서관제어번호_서지"
+      },
+      {
+       "이름": "URI",
+       "설명": "URI"
+      },
+      {
+       "이름": "DCTERMS_title",
+       "설명": "제목"
+      },
+      {
+       "이름": "RDFS_label",
+       "설명": "라벨"
+      },
+      {
+       "이름": "DC_creator",
+       "설명": "창작자이름"
+      },
+      {
+       "이름": "OWL_sameAs",
+       "설명": "동일개체"
+      },
+      {
+       "이름": "DCTERMS_relation",
+       "설명": "비특정적관계저록(제어번호연결)"
+      },
+      {
+       "이름": "RDFS_seeAlso",
+       "설명": "참고링크"
+      },
+      {
+       "이름": "DCTERMS_hasPart",
+       "설명": "구성자료"
+      },
+      {
+       "이름": "DCTERMS_tableOfContents",
+       "설명": "목차"
+      },
+      {
+       "이름": "NLON_localHolding",
+       "설명": "소장사항"
+      },
+      {
+       "이름": "DCTERMS_hasVersion",
+       "설명": "이판저록"
+      },
+      {
+       "이름": "DCTERMS_creator",
+       "설명": "창작자"
+      },
+      {
+       "이름": "BIBO_isbn",
+       "설명": "ISBN"
+      },
+      {
+       "이름": "DCTERMS_abstract",
+       "설명": "초록"
+      },
+      {
+       "이름": "DCTERMS_hasFormat",
+       "설명": "기타형태저록"
+      },
+      {
+       "이름": "NLON_genre",
+       "설명": "장르"
+      },
+      {
+       "이름": "BIBO_translationOf",
+       "설명": "번역저록의원본"
+      },
+      {
+       "이름": "DCTERMS_alternative",
+       "설명": "대체제목"
+      },
+      {
+       "이름": "DCTERMS_description",
+       "설명": "설명"
+      },
+      {
+       "이름": "NLON_originalVersionNote",
+       "설명": "원본주기"
+      },
+      {
+       "이름": "NLON_hasSupplement",
+       "설명": "보유판및특별호저록"
+      },
+      {
+       "이름": "DCTERMS_subject",
+       "설명": "주제"
+      },
+      {
+       "이름": "NLON_keyword",
+       "설명": "키워드"
+      },
+      {
+       "이름": "NLON_cip",
+       "설명": "출판시도서목록(CIP)제어번호"
+      },
+      {
+       "이름": "NLON_uniformTitleOfSeries",
+       "설명": "통일표제(총서)"
+      },
+      {
+       "이름": "NLON_supplementTo",
+       "설명": "모체레코드저록"
+      },
+      {
+       "이름": "NLON_supplementNote",
+       "설명": "부록주기"
+      },
+      {
+       "이름": "NLON_remainderOfTitle",
+       "설명": "표제관련정보"
+      },
+      {
+       "이름": "NLON_preceding",
+       "설명": "선행저록"
+      },
+      {
+       "이름": "DCTERMS_isPartOf",
+       "설명": "상위자료"
+      },
+      {
+       "이름": "NLON_titleOfSupplementParent",
+       "설명": "모체레코드저록표제"
+      },
+      {
+       "이름": "NLON_titleOfSeries",
+       "설명": "총서표제"
+      },
+      {
+       "이름": "NLON_series",
+       "설명": "총서관계"
+      },
+      {
+       "이름": "DCTERMS_requires",
+       "설명": "시스템사항에관한주기"
+      },
+      {
+       "이름": "NLON_publicationPlace",
+       "설명": "발행지"
+      },
+      {
+       "이름": "NLON_succeeding",
+       "설명": "후속저록"
+      },
+      {
+       "이름": "NLON_titleOfTranslation",
+       "설명": "번역저록표제"
+      },
+      {
+       "이름": "NLON_titleOfSupplement",
+       "설명": "보유판및특별호저록표제"
+      },
+      {
+       "이름": "NLON_gprn",
+       "설명": "한국정부간행물발간등록번호"
+      },
+      {
+       "이름": "DCTERMS_identifier",
+       "설명": "식별자"
+      },
+      {
+       "이름": "NLON_linkingEntryComplexityNote",
+       "설명": "연관저록설명주기"
+      },
+      {
+       "이름": "DC_relation",
+       "설명": "비특정적관계저록"
+      },
+      {
+       "이름": "NLON_meetingInformation",
+       "설명": "회의정보"
+      },
+      {
+       "이름": "NLON_citationReferenceNote",
+       "설명": "인용참고주기"
+      },
+      {
+       "이름": "NLON_audienceNote",
+       "설명": "이용대상자주기"
+      },
+      {
+       "이름": "DC_publisher",
+       "설명": "발행처"
+      },
+      {
+       "이름": "BIBO_volume",
+       "설명": "권차/편차"
+      },
+      {
+       "이름": "NLON_awardsNote",
+       "설명": "수상주기"
+      },
+      {
+       "이름": "NLON_volumeOfNLK",
+       "설명": "국립중앙도서관권연차기호"
+      },
+      {
+       "이름": "NLON_physicalFormAvailableNote",
+       "설명": "이용가능한다른형태자료"
+      },
+      {
+       "이름": "NLON_exhibition",
+       "설명": "전시주기"
+      },
+      {
+       "이름": "NLON_titleOfPreceding",
+       "설명": "선행저록표제"
+      },
+      {
+       "이름": "NLON_translatedAs",
+       "설명": "번역저록"
+      },
+      {
+       "이름": "DCTERMS_language",
+       "설명": "언어"
+      },
+      {
+       "이름": "NLON_titleOfOtherEdition",
+       "설명": "이판저록표제"
+      },
+      {
+       "이름": "NLON_volumeOfSeries",
+       "설명": "총서번호"
+      },
+      {
+       "이름": "NLON_bibliography",
+       "설명": "서지등주기"
+      },
+      {
+       "이름": "NLON_uniformTitle",
+       "설명": "통일표제"
+      },
+      {
+       "이름": "BIBFRAME_extent",
+       "설명": "형태사항"
+      },
+      {
+       "이름": "NLON_languageNote",
+       "설명": "언어주기"
+      },
+      {
+       "이름": "NLON_medium",
+       "설명": "자료형태"
+      },
+      {
+       "이름": "NLON_holdingInstitution",
+       "설명": "소장기관"
+      },
+      {
+       "이름": "NLON_titleOfSucceeding",
+       "설명": "후속저록표제"
+      },
+      {
+       "이름": "NLON_numberingPeculiaritiesNote",
+       "설명": "특수한권차표시주기"
+      },
+      {
+       "이름": "BIBO_edition",
+       "설명": "판사항"
+      },
+      {
+       "이름": "NLON_reproductionNote",
+       "설명": "복제주기"
+      },
+      {
+       "이름": "NLON_titleOfOriginalLanguage",
+       "설명": "원저저록표제"
+      },
+      {
+       "이름": "NLON_titleOfAdditionalPhysicalForm",
+       "설명": "기타형태저록표제"
+      },
+      {
+       "이름": "NLON_issuingBodyNote",
+       "설명": "발행처주기"
+      },
+      {
+       "이름": "NLON_holdingItemNote",
+       "설명": "소장본주기"
+      },
+      {
+       "이름": "NLON_dateOfPublicationSequentialDesignation",
+       "설명": "권연차또는발행년표시"
+      },
+      {
+       "이름": "NLON_scale",
+       "설명": "축척표시"
+      },
+      {
+       "이름": "NLON_restriction",
+       "설명": "이용제한주기"
+      },
+      {
+       "이름": "NLON_relatedSpecies",
+       "설명": "관련생물종"
+      },
+      {
+       "이름": "NLON_projection",
+       "설명": "도법표시"
+      },
+      {
+       "이름": "NLON_dateOfManufacture",
+       "설명": "제작년또는인쇄년"
+      },
+      {
+       "이름": "NLON_headingOfOriginalLanguage",
+       "설명": "원저저록기본표목"
+      },
+      {
+       "이름": "NLON_gpo",
+       "설명": "미국정부간행물번호"
+      },
+      {
+       "이름": "NLON_keyTitle",
+       "설명": "등록표제"
+      },
+      {
+       "이름": "NLON_locationNote",
+       "설명": "소재주기"
+      },
+      {
+       "이름": "NLON_relatedHeritage",
+       "설명": "관련유산"
+      },
+      {
+       "이름": "NLON_titleOfSubSeries",
+       "설명": "하위총서표제"
+      },
+      {
+       "이름": "NLON_manufacturer",
+       "설명": "제작처"
+      },
+      {
+       "이름": "NLON_distributor",
+       "설명": "배포처"
+      },
+      {
+       "이름": "DCTERMS_issued",
+       "설명": "발행일"
+      },
+      {
+       "이름": "BIBO_issn",
+       "설명": "ISSN"
+      },
+      {
+       "이름": "NLON_issuedYear",
+       "설명": "발행연도"
+      },
+      {
+       "이름": "BIBO_identifier",
+       "설명": "협력기관제어번호"
+      },
+      {
+       "이름": "BIBO_uri",
+       "설명": "외부기관URI"
+      },
+      {
+       "이름": "NLON_itemNumberOfNLK",
+       "설명": "국립중앙도서관청구기호"
+      },
+      {
+       "이름": "NLON_kdc",
+       "설명": "한국십진분류기호"
+      },
+      {
+       "이름": "NLON_department",
+       "설명": "학과/전공"
+      },
+      {
+       "이름": "NLON_ddcn",
+       "설명": "듀이십진분류기호(기타)"
+      },
+      {
+       "이름": "NLON_datePublished",
+       "설명": "데이터발행일시"
+      },
+      {
+       "이름": "NLON_kdcn",
+       "설명": "한국십진분류(기타)"
+      },
+      {
+       "이름": "NLON_itemNumberOfLC",
+       "설명": "미국의회도서관도서기호"
+      },
+      {
+       "이름": "NLON_useAndReproductionNote",
+       "설명": "이용과복제제한에관한주기"
+      },
+      {
+       "이름": "NLON_biographicalNote",
+       "설명": "전기적또는역사적데이터"
+      },
+      {
+       "이름": "NLON_ddc",
+       "설명": "듀이십진분류기호"
+      },
+      {
+       "이름": "NLON_classificationNumberOfLC",
+       "설명": "미국의회도서관분류기호"
+      },
+      {
+       "이름": "NLON_relatedParts",
+       "설명": "관련부분"
+      },
+      {
+       "이름": "NLON_titleOfIssuedWith",
+       "설명": "동시발간저록표제"
+      },
+      {
+       "이름": "NLON_titleOfHostItem",
+       "설명": "기본자료표제"
+      },
+      {
+       "이름": "NLON_issnOfSeries",
+       "설명": "총서ISSN"
+      },
+      {
+       "이름": "DCTERMS_format",
+       "설명": "컴퓨터파일과데이터유형"
+      },
+      {
+       "이름": "NLON_manufacturingPlace",
+       "설명": "제작지"
+      },
+      {
+       "이름": "NLON_strn",
+       "설명": "표준기술보고서번호"
+      },
+      {
+       "이름": "NLON_formerTitle",
+       "설명": "변경전본표제"
+      },
+      {
+       "이름": "NLON_distributionPlace",
+       "설명": "배포지"
+      },
+      {
+       "이름": "NLON_classificationNumberOfNLK",
+       "설명": "국립중앙도서관분류기호"
+      },
+      {
+       "이름": "NLON_dateSequentialDesignation",
+       "설명": "변경전권연차표시"
+      },
+      {
+       "이름": "NLON_abbreviatedTitle",
+       "설명": "축약표제"
+      },
+      {
+       "이름": "BIBO_shortTitle",
+       "설명": "단축표제"
+      },
+      {
+       "이름": "NLON_relatedCountry",
+       "설명": "관련국가"
+      },
+      {
+       "이름": "NLON_otherNumber",
+       "설명": "기타분류기호"
+      },
+      {
+       "이름": "BIBO_coden",
+       "설명": "CODEN"
+      },
+      {
+       "이름": "NLON_producer",
+       "설명": "생산처"
+      },
+      {
+       "이름": "NLON_titleOfConstituentUnit",
+       "설명": "구성단위저록표제"
+      },
+      {
+       "이름": "NLON_relationshipInformation",
+       "설명": "관계정보"
+      },
+      {
+       "이름": "NLON_issuedWith",
+       "설명": "동시발간저록"
+      },
+      {
+       "이름": "NLON_mainSeries",
+       "설명": "상위총서"
+      },
+      {
+       "이름": "NLON_subSeries",
+       "설명": "하위총서"
+      },
+      {
+       "이름": "BIBO_degree",
+       "설명": "학위논문의 종류"
+      },
+      {
+       "이름": "BIBO_lccn",
+       "설명": "LCCN"
+      },
+      {
+       "이름": "NLON_dateOfFormerPublicationFrequency",
+       "설명": "이전간행빈도시행연월"
+      },
+      {
+       "이름": "DC_type",
+       "설명": "유형"
+      },
+      {
+       "이름": "NLON_authenticationCode",
+       "설명": "검증기관부호"
+      },
+      {
+       "이름": "NLON_editionOfDDC",
+       "설명": "듀이십진분류기호판표시"
+      },
+      {
+       "이름": "NLON_formerPublicationFrequency",
+       "설명": "이전간행빈도"
+      },
+      {
+       "이름": "NLON_headingOfTranslation",
+       "설명": "번역저록기본표목"
+      },
+      {
+       "이름": "NLON_typeOfContinuousData",
+       "설명": "연속자료유형"
+      },
+      {
+       "이름": "NLON_typeOfData",
+       "설명": "자료구분"
+      },
+      {
+       "이름": "NLON_typeOfPublicationFrequency",
+       "설명": "간행빈도"
+      },
+      {
+       "이름": "NLON_typeOfPublicationStatus",
+       "설명": "간행상태"
+      },
+      {
+       "이름": "NLON_formerTitleComplexityNote",
+       "설명": "변경전표제설명주기"
+      },
+      {
+       "이름": "NLON_sourceOfOtherNumber",
+       "설명": "기타분류기호의 정보원"
+      },
+      {
+       "이름": "DCTERMS_dateCopyrighted",
+       "설명": "저작권표시연도"
+      },
+      {
+       "이름": "NLON_currentPublicationFrequency",
+       "설명": "현재간행빈도"
+      },
+      {
+       "이름": "NLON_nlkcn",
+       "설명": "NLKCN"
+      },
+      {
+       "이름": "NLON_itemNumberOfOtherNumber",
+       "설명": "기타도서기호"
+      },
+      {
+       "이름": "NLON_dateOfDistribute",
+       "설명": "배포년"
+      },
+      {
+       "이름": "NLON_dateOfCurrentPublicationFrequency",
+       "설명": "현재간행빈도시작연월"
+      },
+      {
+       "이름": "NLON_editionOfKDC",
+       "설명": "한국십진분류판표시"
+      },
+      {
+       "이름": "NLON_productionPlace",
+       "설명": "생산지"
+      },
+      {
+       "이름": "NLON_degreeYear",
+       "설명": "학위연도"
+      },
+      {
+       "이름": "DCTERMS_created",
+       "설명": "생성일"
+      },
+      {
+       "이름": "DC_format",
+       "설명": "자료형식"
+      },
+      {
+       "이름": "RDF_type",
+       "설명": "데이터유형"
+      },
+      {
+       "이름": "BIBFRAME_place",
+       "설명": "발행국부호"
+      },
+      {
+       "이름": "BIBFRAME_language",
+       "설명": "언어구분부호"
+      },
+      {
+       "이름": "NLON_governmentPublisher",
+       "설명": "정부발행부처"
+      },
+      {
+       "이름": "DCTERMS_accessRights",
+       "설명": "접근제한유형"
+      },
+      {
+       "이름": "BIBO_abstract",
+       "설명": "초록정보"
+      },
+      {
+       "이름": "NLON_containedIn",
+       "설명": "포함자료"
+      },
+      {
+       "이름": "NLON_hasIssue",
+       "설명": "개별호"
+      },
+      {
+       "이름": "NLON_mainEntryHeading",
+       "설명": "상위총서저록기본표목"
+      },
+      {
+       "이름": "NLON_sourceOfInformation",
+       "설명": "권연차연월차사항확인자료명"
+      },
+      {
+       "이름": "NLON_titleOfMainSeries",
+       "설명": "상위총서저록표제"
+      },
+      {
+       "이름": "totalCount",
+       "설명": "총 개수"
+      },
+      {
+       "이름": "pageNo",
+       "설명": "페이지 번호"
+      },
+      {
+       "이름": "numOfRows",
+       "설명": "목록건수"
+      }
+     ]
+    },
+    {
+     "경로": "/getElectronicBookList_v2",
+     "방식": "GET",
+     "요약": "전자책 정보 서비스",
+     "요청": [],
+     "응답": [
+      {
+       "이름": "header",
+       "설명": "header"
+      },
+      {
+       "이름": "resultCode",
+       "설명": "결과코드"
+      },
+      {
+       "이름": "resultMsg",
+       "설명": "결과메세지"
+      },
+      {
+       "이름": "body",
+       "설명": "body"
+      },
+      {
+       "이름": "numOfRows",
+       "설명": "목록 건수"
+      },
+      {
+       "이름": "items",
+       "설명": "items"
+      },
+      {
+       "이름": "item",
+       "설명": "item"
+      },
+      {
+       "이름": "BIBLIO_ID",
+       "설명": "국립중앙도서관제어번호_서지"
+      },
+      {
+       "이름": "URI",
+       "설명": "URI"
+      },
+      {
+       "이름": "RDFS_label",
+       "설명": "라벨"
+      },
+      {
+       "이름": "DCTERMS_title",
+       "설명": "제목"
+      },
+      {
+       "이름": "DCTERMS_tableOfContents",
+       "설명": "목차"
+      },
+      {
+       "이름": "OWL_sameAs",
+       "설명": "동일개체"
+      },
+      {
+       "이름": "DCTERMS_abstract",
+       "설명": "초록"
+      },
+      {
+       "이름": "DCTERMS_description",
+       "설명": "설명"
+      },
+      {
+       "이름": "RDFS_seeAlso",
+       "설명": "참고링크"
+      },
+      {
+       "이름": "DCTERMS_creator",
+       "설명": "창작자"
+      },
+      {
+       "이름": "NLON_titleOfConstituentUnit",
+       "설명": "구성단위저록표제"
+      },
+      {
+       "이름": "DCTERMS_subject",
+       "설명": "주제"
+      },
+      {
+       "이름": "BIBO_isbn",
+       "설명": "ISBN"
+      },
+      {
+       "이름": "DC_creator",
+       "설명": "창작자이름"
+      },
+      {
+       "이름": "NLON_keyword",
+       "설명": "키워드"
+      },
+      {
+       "이름": "DCTERMS_alternative",
+       "설명": "대체제목"
+      },
+      {
+       "이름": "DCTERMS_identifier",
+       "설명": "식별자"
+      },
+      {
+       "이름": "NLON_translatedAs",
+       "설명": "번역저록"
+      },
+      {
+       "이름": "NLON_exhibition",
+       "설명": "전시주기"
+      },
+      {
+       "이름": "NLON_hasSupplement",
+       "설명": "보유판및특별호저록"
+      },
+      {
+       "이름": "DCTERMS_language",
+       "설명": "언어"
+      },
+      {
+       "이름": "DCTERMS_hasFormat",
+       "설명": "기타형태저록"
+      },
+      {
+       "이름": "NLON_remainderOfTitle",
+       "설명": "표제관련정보"
+      },
+      {
+       "이름": "NLON_originalVersionNote",
+       "설명": "원본주기"
+      },
+      {
+       "이름": "NLON_holdingItemNote",
+       "설명": "소장본주기"
+      },
+      {
+       "이름": "NLON_titleOfSeries",
+       "설명": "총서표제"
+      },
+      {
+       "이름": "NLON_uniformTitleOfSeries",
+       "설명": "통일표제(총서)"
+      },
+      {
+       "이름": "DCTERMS_hasVersion",
+       "설명": "이판저록"
+      },
+      {
+       "이름": "NLON_newsPosition",
+       "설명": "기사위치"
+      },
+      {
+       "이름": "DCTERMS_hasPart",
+       "설명": "구성자료"
+      },
+      {
+       "이름": "NLON_awardsNote",
+       "설명": "수상주기"
+      },
+      {
+       "이름": "NLON_bibliography",
+       "설명": "서지등주기"
+      },
+      {
+       "이름": "NLON_reproductionNote",
+       "설명": "복제주기"
+      },
+      {
+       "이름": "DC_publisher",
+       "설명": "발행처"
+      },
+      {
+       "이름": "NLON_languageNote",
+       "설명": "언어주기"
+      },
+      {
+       "이름": "NLON_holdingInstitution",
+       "설명": "소장기관"
+      },
+      {
+       "이름": "BIBO_volume",
+       "설명": "권차/편차"
+      },
+      {
+       "이름": "DC_relation",
+       "설명": "비특정적관계저록"
+      },
+      {
+       "이름": "NLON_relatedParts",
+       "설명": "관련부분"
+      },
+      {
+       "이름": "NLON_titleOfHostItem",
+       "설명": "기본자료표제"
+      },
+      {
+       "이름": "DCTERMS_isPartOf",
+       "설명": "상위자료"
+      },
+      {
+       "이름": "BIBFRAME_extent",
+       "설명": "형태사항"
+      },
+      {
+       "이름": "NLON_ddcn",
+       "설명": "듀이십진분류기호(기타)"
+      },
+      {
+       "이름": "NLON_kdcn",
+       "설명": "한국십진분류(기타)"
+      },
+      {
+       "이름": "NLON_numberingPeculiaritiesNote",
+       "설명": "특수한권차표시주기"
+      },
+      {
+       "이름": "NLON_titleOfAdditionalPhysicalForm",
+       "설명": "기타형태저록표제"
+      },
+      {
+       "이름": "DCTERMS_accessRights",
+       "설명": "접근제한유형"
+      },
+      {
+       "이름": "NLON_locationNote",
+       "설명": "소재주기"
+      },
+      {
+       "이름": "NLON_dateOfPublicationSequentialDesignation",
+       "설명": "권연차또는발행년표시"
+      },
+      {
+       "이름": "BIBO_edition",
+       "설명": "판사항"
+      },
+      {
+       "이름": "DC_coverage",
+       "설명": "시공간적범위"
+      },
+      {
+       "이름": "NLON_abbreviatedTitle",
+       "설명": "축약표제"
+      },
+      {
+       "이름": "NLON_titleOfOriginalLanguage",
+       "설명": "원저저록표제"
+      },
+      {
+       "이름": "BIBO_shortTitle",
+       "설명": "단축표제"
+      },
+      {
+       "이름": "DCTERMS_requires",
+       "설명": "시스템사항에관한주기"
+      },
+      {
+       "이름": "NLON_preceding",
+       "설명": "선행저록"
+      },
+      {
+       "이름": "NLON_succeeding",
+       "설명": "후속저록"
+      },
+      {
+       "이름": "NLON_series",
+       "설명": "총서관계"
+      },
+      {
+       "이름": "NLON_supplementTo",
+       "설명": "모체레코드저록"
+      },
+      {
+       "이름": "DC_format",
+       "설명": "자료형식"
+      },
+      {
+       "이름": "NLON_volumeOfSeries",
+       "설명": "총서번호"
+      },
+      {
+       "이름": "NLON_publicationPlace",
+       "설명": "발행지"
+      },
+      {
+       "이름": "NLON_datePublished",
+       "설명": "데이터발행일시"
+      },
+      {
+       "이름": "NLON_restriction",
+       "설명": "이용제한주기"
+      },
+      {
+       "이름": "NLON_physicalFormAvailableNote",
+       "설명": "이용가능한다른형태자료"
+      },
+      {
+       "이름": "NLON_titleOfPreceding",
+       "설명": "선행저록표제"
+      },
+      {
+       "이름": "NLON_typeOfResource",
+       "설명": "콘텐츠유형"
+      },
+      {
+       "이름": "NLON_titleOfSucceeding",
+       "설명": "후속저록표제"
+      },
+      {
+       "이름": "DCTERMS_relation",
+       "설명": "비특정적관계저록(제어번호연결)"
+      },
+      {
+       "이름": "BIBO_translationOf",
+       "설명": "번역저록의원본"
+      },
+      {
+       "이름": "BIBO_doi",
+       "설명": "DOI"
+      },
+      {
+       "이름": "NLON_relatedNaturalAttraction",
+       "설명": "관련관광자원"
+      },
+      {
+       "이름": "NLON_uci",
+       "설명": "UCI"
+      },
+      {
+       "이름": "NLON_titleOfOtherEdition",
+       "설명": "이판저록표제"
+      },
+      {
+       "이름": "BIBO_degree",
+       "설명": "학위논문의 종류"
+      },
+      {
+       "이름": "BIBO_issn",
+       "설명": "ISSN"
+      },
+      {
+       "이름": "NLON_medium",
+       "설명": "자료형태"
+      },
+      {
+       "이름": "DCTERMS_issued",
+       "설명": "발행일"
+      },
+      {
+       "이름": "NLON_ddc",
+       "설명": "듀이십진분류기호"
+      },
+      {
+       "이름": "NLON_newsGenre",
+       "설명": "기사장르"
+      },
+      {
+       "이름": "NLON_gprn",
+       "설명": "한국정부간행물발간등록번호"
+      },
+      {
+       "이름": "NLON_citationReferenceNote",
+       "설명": "인용참고주기"
+      },
+      {
+       "이름": "DCTERMS_bibliographicCitation",
+       "설명": "서지인용"
+      },
+      {
+       "이름": "NLON_kdc",
+       "설명": "한국십진분류기호"
+      },
+      {
+       "이름": "NLON_antecedentSource",
+       "설명": "원시자료의정보원"
+      },
+      {
+       "이름": "BIBO_uri",
+       "설명": "외부기관URI"
+      },
+      {
+       "이름": "NLON_gpo",
+       "설명": "미국정부간행물번호"
+      },
+      {
+       "이름": "NLON_audienceNote",
+       "설명": "이용대상자주기"
+      },
+      {
+       "이름": "DCTERMS_created",
+       "설명": "생성일"
+      },
+      {
+       "이름": "NLON_scale",
+       "설명": "축척표시"
+      },
+      {
+       "이름": "NLON_currentPublicationFrequency",
+       "설명": "현재간행빈도"
+      },
+      {
+       "이름": "NLON_otherNumber",
+       "설명": "기타분류기호"
+      },
+      {
+       "이름": "NLON_classificationNumberOfLC",
+       "설명": "미국의회도서관분류기호"
+      },
+      {
+       "이름": "NLON_genre",
+       "설명": "장르"
+      },
+      {
+       "이름": "NLON_relatedOrganization",
+       "설명": "관련단체"
+      },
+      {
+       "이름": "NLON_relatedPerson",
+       "설명": "관련인물"
+      },
+      {
+       "이름": "BIBO_sici",
+       "설명": "SICI"
+      },
+      {
+       "이름": "BIBO_lccn",
+       "설명": "LCCN"
+      },
+      {
+       "이름": "NLON_relatedPlace",
+       "설명": "관련장소"
+      },
+      {
+       "이름": "NLON_dateOfManufacture",
+       "설명": "제작년또는인쇄년"
+      },
+      {
+       "이름": "NLON_volumeOfNLK",
+       "설명": "국립중앙도서관권연차기호"
+      },
+      {
+       "이름": "NLON_typeOfData",
+       "설명": "자료구분"
+      },
+      {
+       "이름": "NLON_editionOfKDC",
+       "설명": "한국십진분류판표시"
+      },
+      {
+       "이름": "BIBO_abstract",
+       "설명": "초록정보"
+      },
+      {
+       "이름": "NLON_containedIn",
+       "설명": "포함자료"
+      },
+      {
+       "이름": "NLON_hasIssue",
+       "설명": "개별호"
+      },
+      {
+       "이름": "NLON_mainEntryHeading",
+       "설명": "상위총서저록기본표목"
+      },
+      {
+       "이름": "NLON_sourceOfInformation",
+       "설명": "권연차연월차사항확인자료명"
+      },
+      {
+       "이름": "NLON_titleOfMainSeries",
+       "설명": "상위총서저록표제"
+      },
+      {
+       "이름": "totalCount",
+       "설명": "총 개수"
+      },
+      {
+       "이름": "pageNo",
+       "설명": "페이지 번호"
+      }
+     ]
+    },
+    {
+     "경로": "/getMultimediaList_v2",
+     "방식": "GET",
+     "요약": "멀티미디어 정보 서비스",
+     "요청": [],
+     "응답": [
+      {
+       "이름": "header",
+       "설명": "header"
+      },
+      {
+       "이름": "resultCode",
+       "설명": "결과코드"
+      },
+      {
+       "이름": "resultMsg",
+       "설명": "결과메세지"
+      },
+      {
+       "이름": "body",
+       "설명": "body"
+      },
+      {
+       "이름": "items",
+       "설명": "items"
+      },
+      {
+       "이름": "item",
+       "설명": "item"
+      },
+      {
+       "이름": "BIBLIO_ID",
+       "설명": "국립중앙도서관제어번호_서지"
+      },
+      {
+       "이름": "URI",
+       "설명": "URI"
+      },
+      {
+       "이름": "RDFS_label",
+       "설명": "라벨"
+      },
+      {
+       "이름": "DCTERMS_title",
+       "설명": "제목"
+      },
+      {
+       "이름": "DCTERMS_tableOfContents",
+       "설명": "목차"
+      },
+      {
+       "이름": "OWL_sameAs",
+       "설명": "동일개체"
+      },
+      {
+       "이름": "DCTERMS_abstract",
+       "설명": "초록"
+      },
+      {
+       "이름": "DCTERMS_description",
+       "설명": "설명"
+      },
+      {
+       "이름": "RDFS_seeAlso",
+       "설명": "참고링크"
+      },
+      {
+       "이름": "DCTERMS_creator",
+       "설명": "창작자"
+      },
+      {
+       "이름": "NLON_titleOfConstituentUnit",
+       "설명": "구성단위저록표제"
+      },
+      {
+       "이름": "DCTERMS_subject",
+       "설명": "주제"
+      },
+      {
+       "이름": "BIBO_isbn",
+       "설명": "ISBN"
+      },
+      {
+       "이름": "DC_creator",
+       "설명": "창작자이름"
+      },
+      {
+       "이름": "NLON_keyword",
+       "설명": "키워드"
+      },
+      {
+       "이름": "DCTERMS_alternative",
+       "설명": "대체제목"
+      },
+      {
+       "이름": "DCTERMS_identifier",
+       "설명": "식별자"
+      },
+      {
+       "이름": "NLON_translatedAs",
+       "설명": "번역저록"
+      },
+      {
+       "이름": "NLON_exhibition",
+       "설명": "전시주기"
+      },
+      {
+       "이름": "NLON_hasSupplement",
+       "설명": "보유판및특별호저록"
+      },
+      {
+       "이름": "DCTERMS_language",
+       "설명": "언어"
+      },
+      {
+       "이름": "DCTERMS_hasFormat",
+       "설명": "기타형태저록"
+      },
+      {
+       "이름": "NLON_remainderOfTitle",
+       "설명": "표제관련정보"
+      },
+      {
+       "이름": "NLON_originalVersionNote",
+       "설명": "원본주기"
+      },
+      {
+       "이름": "NLON_holdingItemNote",
+       "설명": "소장본주기"
+      },
+      {
+       "이름": "NLON_titleOfSeries",
+       "설명": "총서표제"
+      },
+      {
+       "이름": "NLON_uniformTitleOfSeries",
+       "설명": "통일표제(총서)"
+      },
+      {
+       "이름": "DCTERMS_hasVersion",
+       "설명": "이판저록"
+      },
+      {
+       "이름": "NLON_newsPosition",
+       "설명": "기사위치"
+      },
+      {
+       "이름": "DCTERMS_hasPart",
+       "설명": "구성자료"
+      },
+      {
+       "이름": "NLON_awardsNote",
+       "설명": "수상주기"
+      },
+      {
+       "이름": "NLON_bibliography",
+       "설명": "서지등주기"
+      },
+      {
+       "이름": "NLON_reproductionNote",
+       "설명": "복제주기"
+      },
+      {
+       "이름": "DC_publisher",
+       "설명": "발행처"
+      },
+      {
+       "이름": "NLON_languageNote",
+       "설명": "언어주기"
+      },
+      {
+       "이름": "NLON_holdingInstitution",
+       "설명": "소장기관"
+      },
+      {
+       "이름": "BIBO_volume",
+       "설명": "권차/편차"
+      },
+      {
+       "이름": "DC_relation",
+       "설명": "비특정적관계저록"
+      },
+      {
+       "이름": "NLON_relatedParts",
+       "설명": "관련부분"
+      },
+      {
+       "이름": "NLON_titleOfHostItem",
+       "설명": "기본자료표제"
+      },
+      {
+       "이름": "DCTERMS_isPartOf",
+       "설명": "상위자료"
+      },
+      {
+       "이름": "BIBFRAME_extent",
+       "설명": "형태사항"
+      },
+      {
+       "이름": "NLON_ddcn",
+       "설명": "듀이십진분류기호(기타)"
+      },
+      {
+       "이름": "NLON_kdcn",
+       "설명": "한국십진분류(기타)"
+      },
+      {
+       "이름": "NLON_numberingPeculiaritiesNote",
+       "설명": "특수한권차표시주기"
+      },
+      {
+       "이름": "NLON_titleOfAdditionalPhysicalForm",
+       "설명": "기타형태저록표제"
+      },
+      {
+       "이름": "DCTERMS_accessRights",
+       "설명": "접근제한유형"
+      },
+      {
+       "이름": "NLON_locationNote",
+       "설명": "소재주기"
+      },
+      {
+       "이름": "NLON_dateOfPublicationSequentialDesignation",
+       "설명": "권연차또는발행년표시"
+      },
+      {
+       "이름": "BIBO_edition",
+       "설명": "판사항"
+      },
+      {
+       "이름": "DC_coverage",
+       "설명": "시공간적범위"
+      },
+      {
+       "이름": "NLON_abbreviatedTitle",
+       "설명": "축약표제"
+      },
+      {
+       "이름": "NLON_titleOfOriginalLanguage",
+       "설명": "원저저록표제"
+      },
+      {
+       "이름": "BIBO_shortTitle",
+       "설명": "단축표제"
+      },
+      {
+       "이름": "DCTERMS_requires",
+       "설명": "시스템사항에관한주기"
+      },
+      {
+       "이름": "NLON_preceding",
+       "설명": "선행저록"
+      },
+      {
+       "이름": "NLON_succeeding",
+       "설명": "후속저록"
+      },
+      {
+       "이름": "NLON_series",
+       "설명": "총서관계"
+      },
+      {
+       "이름": "NLON_supplementTo",
+       "설명": "모체레코드저록"
+      },
+      {
+       "이름": "DC_format",
+       "설명": "자료형식"
+      },
+      {
+       "이름": "NLON_volumeOfSeries",
+       "설명": "총서번호"
+      },
+      {
+       "이름": "NLON_publicationPlace",
+       "설명": "발행지"
+      },
+      {
+       "이름": "NLON_datePublished",
+       "설명": "데이터발행일시"
+      },
+      {
+       "이름": "NLON_restriction",
+       "설명": "이용제한주기"
+      },
+      {
+       "이름": "NLON_physicalFormAvailableNote",
+       "설명": "이용가능한다른형태자료"
+      },
+      {
+       "이름": "NLON_titleOfPreceding",
+       "설명": "선행저록표제"
+      },
+      {
+       "이름": "NLON_typeOfResource",
+       "설명": "콘텐츠유형"
+      },
+      {
+       "이름": "NLON_titleOfSucceeding",
+       "설명": "후속저록표제"
+      },
+      {
+       "이름": "DCTERMS_relation",
+       "설명": "비특정적관계저록(제어번호연결)"
+      },
+      {
+       "이름": "BIBO_translationOf",
+       "설명": "번역저록의원본"
+      },
+      {
+       "이름": "BIBO_doi",
+       "설명": "DOI"
+      },
+      {
+       "이름": "NLON_relatedNaturalAttraction",
+       "설명": "관련관광자원"
+      },
+      {
+       "이름": "NLON_uci",
+       "설명": "UCI"
+      },
+      {
+       "이름": "NLON_titleOfOtherEdition",
+       "설명": "이판저록표제"
+      },
+      {
+       "이름": "BIBO_degree",
+       "설명": "학위논문의 종류"
+      },
+      {
+       "이름": "BIBO_issn",
+       "설명": "ISSN"
+      },
+      {
+       "이름": "NLON_medium",
+       "설명": "자료형태"
+      },
+      {
+       "이름": "DCTERMS_issued",
+       "설명": "발행일"
+      },
+      {
+       "이름": "NLON_ddc",
+       "설명": "듀이십진분류기호"
+      },
+      {
+       "이름": "NLON_newsGenre",
+       "설명": "기사장르"
+      },
+      {
+       "이름": "NLON_gprn",
+       "설명": "한국정부간행물발간등록번호"
+      },
+      {
+       "이름": "NLON_citationReferenceNote",
+       "설명": "인용참고주기"
+      },
+      {
+       "이름": "DCTERMS_bibliographicCitation",
+       "설명": "서지인용"
+      },
+      {
+       "이름": "NLON_kdc",
+       "설명": "한국십진분류기호"
+      },
+      {
+       "이름": "NLON_antecedentSource",
+       "설명": "원시자료의정보원"
+      },
+      {
+       "이름": "BIBO_uri",
+       "설명": "외부기관URI"
+      },
+      {
+       "이름": "NLON_gpo",
+       "설명": "미국정부간행물번호"
+      },
+      {
+       "이름": "NLON_audienceNote",
+       "설명": "이용대상자주기"
+      },
+      {
+       "이름": "DCTERMS_created",
+       "설명": "생성일"
+      },
+      {
+       "이름": "NLON_scale",
+       "설명": "축척표시"
+      },
+      {
+       "이름": "NLON_currentPublicationFrequency",
+       "설명": "현재간행빈도"
+      },
+      {
+       "이름": "NLON_otherNumber",
+       "설명": "기타분류기호"
+      },
+      {
+       "이름": "NLON_classificationNumberOfLC",
+       "설명": "미국의회도서관분류기호"
+      },
+      {
+       "이름": "NLON_genre",
+       "설명": "장르"
+      },
+      {
+       "이름": "NLON_relatedOrganization",
+       "설명": "관련단체"
+      },
+      {
+       "이름": "NLON_relatedPerson",
+       "설명": "관련인물"
+      },
+      {
+       "이름": "BIBO_sici",
+       "설명": "SICI"
+      },
+      {
+       "이름": "BIBO_lccn",
+       "설명": "LCCN"
+      },
+      {
+       "이름": "NLON_relatedPlace",
+       "설명": "관련장소"
+      },
+      {
+       "이름": "NLON_dateOfManufacture",
+       "설명": "제작년또는인쇄년"
+      },
+      {
+       "이름": "NLON_volumeOfNLK",
+       "설명": "국립중앙도서관권연차기호"
+      },
+      {
+       "이름": "NLON_typeOfData",
+       "설명": "자료구분"
+      },
+      {
+       "이름": "NLON_editionOfKDC",
+       "설명": "한국십진분류판표시"
+      },
+      {
+       "이름": "BIBO_abstract",
+       "설명": "초록정보"
+      },
+      {
+       "이름": "NLON_containedIn",
+       "설명": "포함자료"
+      },
+      {
+       "이름": "NLON_hasIssue",
+       "설명": "개별호"
+      },
+      {
+       "이름": "NLON_mainEntryHeading",
+       "설명": "상위총서저록기본표목"
+      },
+      {
+       "이름": "NLON_sourceOfInformation",
+       "설명": "권연차연월차사항확인자료명"
+      },
+      {
+       "이름": "NLON_titleOfMainSeries",
+       "설명": "상위총서저록표제"
+      },
+      {
+       "이름": "totalCount",
+       "설명": "총 개수"
+      },
+      {
+       "이름": "pageNo",
+       "설명": "페이지 번호\\t"
+      },
+      {
+       "이름": "numOfRows",
+       "설명": "목록 건수"
+      }
+     ]
+    },
+    {
+     "경로": "/getOfflineBookAuthorList_v2",
+     "방식": "GET",
+     "요약": "오프라인 도서 저자 관계",
+     "요청": [],
+     "응답": [
+      {
+       "이름": "header",
+       "설명": "header"
+      },
+      {
+       "이름": "resultCode",
+       "설명": "결과코드"
+      },
+      {
+       "이름": "resultMsg",
+       "설명": "결과메세지"
+      },
+      {
+       "이름": "body",
+       "설명": "body"
+      },
+      {
+       "이름": "items",
+       "설명": "items"
+      },
+      {
+       "이름": "item",
+       "설명": "item"
+      },
+      {
+       "이름": "DCTERMS_creator",
+       "설명": "창작자"
+      },
+      {
+       "이름": "BIBLIO_ID",
+       "설명": "국립중앙도서관제어번호_서지"
+      },
+      {
+       "이름": "totalCount",
+       "설명": "총 개수"
+      },
+      {
+       "이름": "pageNo",
+       "설명": "페이지 번호"
+      },
+      {
+       "이름": "numOfRows",
+       "설명": "목록 건수\\t"
+      }
+     ]
+    },
+    {
+     "경로": "/getOfflineBookSubjectList_v2",
+     "방식": "GET",
+     "요약": "오프라인 도서 주제 관계",
+     "요청": [],
+     "응답": [
+      {
+       "이름": "header",
+       "설명": "header"
+      },
+      {
+       "이름": "resultCode",
+       "설명": "결과코드"
+      },
+      {
+       "이름": "resultMsg",
+       "설명": "결과메세지"
+      },
+      {
+       "이름": "body",
+       "설명": "body"
+      },
+      {
+       "이름": "items",
+       "설명": "items"
+      },
+      {
+       "이름": "item",
+       "설명": "item"
+      },
+      {
+       "이름": "DCTERMS_subject",
+       "설명": "주제"
+      },
+      {
+       "이름": "BIBLIO_ID",
+       "설명": "국립중앙도서관제어번호_서지"
+      },
+      {
+       "이름": "totalCount",
+       "설명": "총 개수"
+      },
+      {
+       "이름": "pageNo",
+       "설명": "페이지 번호"
+      },
+      {
+       "이름": "numOfRows",
+       "설명": "목록 건수"
+      }
+     ]
+    },
+    {
+     "경로": "/getOfflineNonBookAuthorList_v2",
+     "방식": "GET",
+     "요약": "오프라인 비도서 저자 관계",
+     "요청": [],
+     "응답": [
+      {
+       "이름": "header",
+       "설명": "header"
+      },
+      {
+       "이름": "resultCode",
+       "설명": "결과코드"
+      },
+      {
+       "이름": "resultMsg",
+       "설명": "결과메세지"
+      },
+      {
+       "이름": "body",
+       "설명": "body"
+      },
+      {
+       "이름": "items",
+       "설명": "items"
+      },
+      {
+       "이름": "item",
+       "설명": "item"
+      },
+      {
+       "이름": "DCTERMS_creator",
+       "설명": "창작자"
+      },
+      {
+       "이름": "BIBLIO_ID",
+       "설명": "국립중앙도서관제어번호_서지"
+      },
+      {
+       "이름": "totalCount",
+       "설명": "총 개수"
+      },
+      {
+       "이름": "pageNo",
+       "설명": "페이지 번호"
+      },
+      {
+       "이름": "numOfRows",
+       "설명": "목록 건수"
+      }
+     ]
+    },
+    {
+     "경로": "/getOfflineNonBookSubjectList_v2",
+     "방식": "GET",
+     "요약": "오프라인 비도서 주제 관계",
+     "요청": [],
+     "응답": [
+      {
+       "이름": "header",
+       "설명": "header"
+      },
+      {
+       "이름": "resultCode",
+       "설명": "결과코드"
+      },
+      {
+       "이름": "resultMsg",
+       "설명": "결과메세지"
+      },
+      {
+       "이름": "body",
+       "설명": "body"
+      },
+      {
+       "이름": "items",
+       "설명": "items"
+      },
+      {
+       "이름": "item",
+       "설명": "item"
+      },
+      {
+       "이름": "DCTERMS_subject",
+       "설명": "주제"
+      },
+      {
+       "이름": "BIBLIO_ID",
+       "설명": "국립중앙도서관제어번호_서지"
+      },
+      {
+       "이름": "totalCount",
+       "설명": "총 개수"
+      },
+      {
+       "이름": "pageNo",
+       "설명": "페이지 번호"
+      },
+      {
+       "이름": "numOfRows",
+       "설명": "목록 건수"
+      }
+     ]
+    },
+    {
+     "경로": "/getOnlineElectronicBookAuthorList_v2",
+     "방식": "GET",
+     "요약": "온라인 전자책 저자 관계",
+     "요청": [],
+     "응답": [
+      {
+       "이름": "header",
+       "설명": "header"
+      },
+      {
+       "이름": "resultCode",
+       "설명": "결과코드"
+      },
+      {
+       "이름": "resultMsg",
+       "설명": "결과메세지"
+      },
+      {
+       "이름": "body",
+       "설명": "body"
+      },
+      {
+       "이름": "items",
+       "설명": "items"
+      },
+      {
+       "이름": "item",
+       "설명": "item"
+      },
+      {
+       "이름": "DCTERMS_creator",
+       "설명": "창작자"
+      },
+      {
+       "이름": "BIBLIO_ID",
+       "설명": "국립중앙도서관제어번호_서지"
+      },
+      {
+       "이름": "totalCount",
+       "설명": "총 개수"
+      },
+      {
+       "이름": "pageNo",
+       "설명": "페이지 번호"
+      },
+      {
+       "이름": "numOfRows",
+       "설명": "목록 건수"
+      }
+     ]
+    },
+    {
+     "경로": "/getOnlineElectronicBookSubjectList_v2",
+     "방식": "GET",
+     "요약": "온라인 전자책 주제 관계",
+     "요청": [],
+     "응답": [
+      {
+       "이름": "header",
+       "설명": "header"
+      },
+      {
+       "이름": "resultCode",
+       "설명": "결과코드"
+      },
+      {
+       "이름": "resultMsg",
+       "설명": "결과메세지"
+      },
+      {
+       "이름": "body",
+       "설명": "body"
+      },
+      {
+       "이름": "items",
+       "설명": "items"
+      },
+      {
+       "이름": "item",
+       "설명": "item"
+      },
+      {
+       "이름": "DCTERMS_subject",
+       "설명": "주제"
+      },
+      {
+       "이름": "BIBLIO_ID",
+       "설명": "국립중앙도서관제어번호_서지"
+      },
+      {
+       "이름": "totalCount",
+       "설명": "총 개수"
+      },
+      {
+       "이름": "pageNo",
+       "설명": "페이지 번호"
+      },
+      {
+       "이름": "numOfRows",
+       "설명": "목록 건수"
+      }
+     ]
+    },
+    {
+     "경로": "/getOnlineElectronicJournalAuthorList_v2",
+     "방식": "GET",
+     "요약": "온라인 전자 저널 저자 관계",
+     "요청": [],
+     "응답": [
+      {
+       "이름": "header",
+       "설명": "header"
+      },
+      {
+       "이름": "resultCode",
+       "설명": "결과코드"
+      },
+      {
+       "이름": "resultMsg",
+       "설명": "결과메세지"
+      },
+      {
+       "이름": "body",
+       "설명": "body"
+      },
+      {
+       "이름": "items",
+       "설명": "items"
+      },
+      {
+       "이름": "item",
+       "설명": "item"
+      },
+      {
+       "이름": "DCTERMS_creator",
+       "설명": "창작자"
+      },
+      {
+       "이름": "BIBLIO_ID",
+       "설명": "국립중앙도서관제어번호_서지"
+      },
+      {
+       "이름": "totalCount",
+       "설명": "총 개수"
+      },
+      {
+       "이름": "pageNo",
+       "설명": "페이지 번호"
+      },
+      {
+       "이름": "numOfRows",
+       "설명": "목록 건수"
+      }
+     ]
+    },
+    {
+     "경로": "/getOnlineElectronicJournalSubjectList_v2",
+     "방식": "GET",
+     "요약": "온라인 전자 저널 주제 관계",
+     "요청": [],
+     "응답": [
+      {
+       "이름": "header",
+       "설명": "header"
+      },
+      {
+       "이름": "resultCode",
+       "설명": "결과코드"
+      },
+      {
+       "이름": "resultMsg",
+       "설명": "결과메세지"
+      },
+      {
+       "이름": "body",
+       "설명": "body"
+      },
+      {
+       "이름": "items",
+       "설명": "items"
+      },
+      {
+       "이름": "item",
+       "설명": "item"
+      },
+      {
+       "이름": "DCTERMS_subject",
+       "설명": "주제"
+      },
+      {
+       "이름": "BIBLIO_ID",
+       "설명": "국립중앙도서관제어번호_서지"
+      },
+      {
+       "이름": "totalCount",
+       "설명": "총 개수"
+      },
+      {
+       "이름": "pageNo",
+       "설명": "페이지 번호"
+      },
+      {
+       "이름": "numOfRows",
+       "설명": "목록 건수"
+      }
+     ]
+    },
+    {
+     "경로": "/getOnlineMultimediaAuthorList_v2",
+     "방식": "GET",
+     "요약": "온라인 멀티미디어 저자 관계",
+     "요청": [],
+     "응답": [
+      {
+       "이름": "header",
+       "설명": "header"
+      },
+      {
+       "이름": "resultCode",
+       "설명": "결과코드"
+      },
+      {
+       "이름": "resultMsg",
+       "설명": "결과메세지"
+      },
+      {
+       "이름": "body",
+       "설명": "body"
+      },
+      {
+       "이름": "items",
+       "설명": "items"
+      },
+      {
+       "이름": "item",
+       "설명": "item"
+      },
+      {
+       "이름": "DCTERMS_creator",
+       "설명": "창작자"
+      },
+      {
+       "이름": "BIBLIO_ID",
+       "설명": "국립중앙도서관제어번호_서지"
+      },
+      {
+       "이름": "totalCount",
+       "설명": "총 개수"
+      },
+      {
+       "이름": "pageNo",
+       "설명": "페이지 번호"
+      },
+      {
+       "이름": "numOfRows",
+       "설명": "목록 건수"
+      }
+     ]
+    },
+    {
+     "경로": "/getOnlineMultimediaSubjectList_v2",
+     "방식": "GET",
+     "요약": "온라인 멀티미디어 주제 관계",
+     "요청": [],
+     "응답": [
+      {
+       "이름": "header",
+       "설명": "header"
+      },
+      {
+       "이름": "resultCode",
+       "설명": "결과코드"
+      },
+      {
+       "이름": "resultMsg",
+       "설명": "결과메세지"
+      },
+      {
+       "이름": "body",
+       "설명": "body"
+      },
+      {
+       "이름": "items",
+       "설명": "items"
+      },
+      {
+       "이름": "item",
+       "설명": "item"
+      },
+      {
+       "이름": "DCTERMS_subject",
+       "설명": "주제"
+      },
+      {
+       "이름": "BIBLIO_ID",
+       "설명": "국립중앙도서관제어번호_서지"
+      },
+      {
+       "이름": "totalCount",
+       "설명": "총 개수"
+      },
+      {
+       "이름": "pageNo",
+       "설명": "페이지 번호"
+      },
+      {
+       "이름": "numOfRows",
+       "설명": "목록 건수"
+      }
+     ]
+    }
+   ]
+  }
+ ],
  "참고문서": [],
  "후보 이름": "",
  "쓰는 곳": "국립중앙도서관 LOD(3차 조사 후보)"
