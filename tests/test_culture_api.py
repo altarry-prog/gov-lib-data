@@ -1,4 +1,4 @@
-import json, os, sys, tempfile, unittest
+import json, os, re, sys, tempfile, unittest
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "collectors"))
 import culture_api as ca
 
@@ -63,3 +63,79 @@ class TPartial(unittest.TestCase):
         job = {"id": "x", "name": "x", "kind": "business", "key": "ZZ_KEY", "src": "s", "url": "https://e/x",
                "page": ("pageNo", "numOfRows", 2)}
         self.assertEqual(ca.run_job(job, get=get, max_pages=5)["상태"], "일부")
+
+
+class TPagesAndLabels(unittest.TestCase):
+    def setUp(self):
+        os.environ["ZZ_KEY"] = "SECRETKEY123"
+        self._sleep = ca.time.sleep
+        ca.time.sleep = lambda s: None
+
+    def tearDown(self):
+        ca.time.sleep = self._sleep
+
+    def job(self, **kw):
+        j = {"id": "x", "name": "x", "kind": "facility", "key": "ZZ_KEY", "src": "s", "url": "https://e/x",
+             "page": ("pageNo", "numOfRows", 2)}
+        j.update(kw)
+        return j
+
+    def test_page_cap_without_total_is_partial(self):
+        full = json.dumps({"items": [{"a": 1}, {"a": 2}]})
+        res = ca.run_job(self.job(), get=lambda u: full, max_pages=3)
+        self.assertEqual(res["상태"], "일부")
+        self.assertIn("페이지 한도 3쪽", res["비고"])
+        self.assertEqual(len(res["rows"]), 6)
+
+    def test_page_cap_with_total_is_partial(self):
+        full = json.dumps({"totalCount": 100, "items": [{"a": 1}, {"a": 2}]})
+        res = ca.run_job(self.job(max_pages=2), get=lambda u: full)
+        self.assertEqual(res["상태"], "일부")
+        self.assertIn("4/100건", res["비고"])
+        self.assertEqual(res["전체건수"], 100)
+
+    def test_complete_with_total_is_success(self):
+        pages = {1: [{"a": 1}, {"a": 2}], 2: [{"a": 3}]}
+
+        def get(u):
+            n = int(re.search(r"pageNo=(\d+)", u).group(1))
+            return json.dumps({"totalCount": 3, "items": pages.get(n, [])})
+        res = ca.run_job(self.job(), get=get)
+        self.assertEqual(res["상태"], "성공")
+        self.assertEqual(len(res["rows"]), 3)
+
+    def test_earlier_url_failure_does_not_mark_partial(self):
+        def get(u):
+            if u.startswith("https://bad/"):
+                raise OSError("HTTP Error 404 key=SECRETKEY123")
+            first = "pageNo=1&" in u or u.endswith("pageNo=1")
+            return json.dumps({"items": [{"a": 1}] if first else []})
+        res = ca.run_job(self.job(url=["https://bad/x", "https://good/x"]), get=get)
+        self.assertEqual(res["상태"], "성공")
+        self.assertEqual(res["비고"], "")
+        self.assertEqual(len(res["시도"]), 1)
+        self.assertNotIn("SECRETKEY123", json.dumps(res, ensure_ascii=False))
+
+    def test_year_fallback_is_success_with_year_note(self):
+        def get(u):
+            yr = re.search(r"pblshYr=(\d+)", u).group(1)
+            if yr == str(ca.TODAY.year) or "pageNo=1&" not in u:
+                return json.dumps({"items": []})
+            return json.dumps({"items": [{"a": 1}]})
+        res = ca.run_job(self.job(year_param="pblshYr"), get=get)
+        self.assertEqual(res["상태"], "성공")
+        self.assertIn(f"pblshYr={ca.TODAY.year - 1}", res["비고"])
+
+    def test_cli_cap_only_lowers(self):
+        full = json.dumps({"items": [{"a": 1}, {"a": 2}]})
+        calls = []
+        ca.run_job(self.job(max_pages=2), get=lambda u: calls.append(u) or full, max_pages=50)
+        self.assertEqual(len(calls), 2)
+
+    def test_all_failed_keeps_reasons_redacted(self):
+        def get(u):
+            raise OSError("timed out SECRETKEY123")
+        res = ca.run_job(self.job(), get=get)
+        self.assertEqual(res["상태"], "실패")
+        self.assertIn("1쪽에서 끊김", res["비고"])
+        self.assertNotIn("SECRETKEY123", res["비고"])
