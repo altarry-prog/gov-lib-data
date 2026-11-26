@@ -208,12 +208,19 @@ def build_url(job, url, key, extra):
     return url + ("&" if "?" in url else "?") + q
 
 
-def run_job(job, get=http_get, max_pages=200, log=print):
-    max_pages = job.get("max_pages", max_pages)
+def run_job(job, get=http_get, max_pages=None, log=print):
+    """한 자료를 페이지 단위로 받는다.
+
+    상태: 성공(끝까지 받음) / 일부(중간 끊김·페이지 한도 도달·전체 건수보다 적음) / 실패(한 건도 못 받음).
+    주소·연도 후보를 차례로 시도하고, 상태와 비고는 **실제로 자료를 받은 시도**의 것만 쓴다.
+    앞선 시도의 실패는 '시도' 칸에 따로 남긴다.
+    """
+    cap = job.get("max_pages", 200)
+    if max_pages:  # 명령줄 --max-pages 는 줄이는 쪽으로만 쓴다(시험·점검용)
+        cap = min(cap, max_pages)
     key = os.environ.get(job["key"], "").strip()
     if not key:
         return {"상태": "키 없음", "키": job["key"]}
-    rows, fields, used_url, note = [], set(), None, ""
     urls = job["url"] if isinstance(job.get("url"), list) else [job.get("url")]
     if job.get("kcisa_page"):
         u = fetch_kcisa_url(job["kcisa_page"], get)
@@ -223,11 +230,14 @@ def run_job(job, get=http_get, max_pages=200, log=print):
     years = [None]
     if job.get("year_param"):
         years = [str(TODAY.year - i) for i in range(0, 4)]
+    pname, sname, size = job.get("page", ("pageNo", "numOfRows", 1000))
+    tried = []
+    best = None
     for url in urls:
         for yr in years:
-            rows, used_url = [], url
-            pname, sname, size = job.get("page", ("pageNo", "numOfRows", 1000))
-            for page in range(1, max_pages + 1):
+            rows, fields, note, total, partial, first_len = [], set(), "", None, False, None
+            reached_end = False
+            for page in range(1, cap + 1):
                 if job.get("seoul"):
                     full = url.format(key=urllib.parse.quote(key, safe=""), start=(page - 1) * size + 1, end=page * size)
                 else:
@@ -238,43 +248,64 @@ def run_job(job, get=http_get, max_pages=200, log=print):
                 try:
                     text = get(full)
                 except Exception as e:  # noqa: BLE001
-                    note = redact(str(e), key)[:200]
+                    note = f"{page}쪽에서 끊김: " + redact(str(e), key)[:180]
+                    partial = bool(rows)
                     break
+                is_xml = job.get("xml") or text.lstrip().startswith("<")
                 try:
-                    items = xml_items(text) if job.get("xml") or text.lstrip().startswith("<") else find_items(json.loads(text))
-                    obj_total = None if job.get("xml") or text.lstrip().startswith("<") else total_count(json.loads(text))
-                except Exception as e:  # noqa: BLE001
-                    note = "응답 해석 실패: " + redact(text, key)[:200].replace("\n", " ")
+                    items = xml_items(text) if is_xml else find_items(json.loads(text))
+                    if total is None and not is_xml:
+                        total = total_count(json.loads(text))
+                except Exception:  # noqa: BLE001
+                    note = f"{page}쪽 응답 해석 실패: " + redact(text, key)[:180].replace("\n", " ")
+                    partial = bool(rows)
                     break
                 if items and set(items[0]) >= {"returncode", "errmsg"}:
                     note = "원천 오류: " + str(items[0].get("errmsg", ""))[:120]
-                    items = []
-                    rows = []
+                    rows, partial = [], False
                     break
                 if not items:
                     if page == 1:
                         note = "빈 응답: " + redact(text, key)[:200].replace("\n", " ")
+                    reached_end = True
                     break
                 rows += items
                 for it in items:
                     fields.update(it.keys())
-                if page == 1:
+                if first_len is None:
                     first_len = len(items)
-                if obj_total is not None and len(rows) >= obj_total:
+                if total is not None and len(rows) >= total:
+                    reached_end = True
                     break
-                if obj_total is None and len(items) < first_len:
-                    break
-                if obj_total is None and first_len < size and len(rows) >= first_len * max_pages:
+                if total is None and len(items) < first_len:
+                    reached_end = True
                     break
                 time.sleep(0.3)
+            else:
+                # 페이지 한도까지 다 돌았는데 끝에 닿지 못함
+                note = f"페이지 한도 {cap}쪽 도달"
+                partial = True
+            if rows and total is not None and len(rows) < total and not partial:
+                note = (note + " / " if note else "") + "전체 건수보다 적음"
+                partial = True
+            label = (f"{url.split('?')[0].replace(key, '***')}" + (f" {job['year_param']}={yr}" if yr else ""))
             if rows:
-                if yr:
-                    note = (note + " " if note else "") + f"{job['year_param']}={yr}"
+                if total is not None:
+                    note = (note + " / " if note else "") + f"{len(rows)}/{total}건"
+                best = {"rows": rows, "fields": fields, "url": url, "note": note, "partial": partial, "total": total,
+                        "yr": yr}
                 break
-        if rows:
+            tried.append(f"{label}: {note or '자료 없음'}")
+        if best:
             break
-    status = "실패" if not rows else ("일부" if note and not note.startswith(job.get("year_param") or "\0") else "성공")
-    return {"상태": status, "rows": rows, "fields": sorted(fields), "url": used_url, "비고": note}
+    if not best:
+        return {"상태": "실패", "rows": [], "fields": [], "url": urls[-1], "비고": " | ".join(tried)[:300],
+                "시도": tried}
+    note = best["note"]
+    if best["yr"]:
+        note = (note + " / " if note else "") + f"{job['year_param']}={best['yr']}"
+    return {"상태": "일부" if best["partial"] else "성공", "rows": best["rows"], "fields": sorted(best["fields"]),
+            "url": best["url"], "비고": note, "전체건수": best["total"], "시도": tried}
 
 
 def save(job, res, root=ROOT, today=None):
@@ -317,7 +348,8 @@ def save(job, res, root=ROOT, today=None):
             w.writerows(cleaned)
         kept = cols
     meta = {"자료": job["name"], "수집일": today, "상태": res["상태"], "건수": len(rows),
-            "받은건수": len(res.get("rows", [])),
+            "받은건수": len(res.get("rows", [])), "원천전체건수": res.get("전체건수"),
+            "앞선시도": res.get("시도", []),
             "시군구수": len(counts), "원천": job["src"],
             "호출주소": (res.get("url") or "").split("?")[0].replace(os.environ.get(job["key"], "") or "\0", "***"),
             "남긴칸": kept, "필드": res.get("fields", []), "버린칸": sorted(set(res.get("fields", [])) - set(kept)) if kept else [],
@@ -334,7 +366,7 @@ def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument("cmd", choices=["run", "list"])
     ap.add_argument("--only", default="")
-    ap.add_argument("--max-pages", type=int, default=200)
+    ap.add_argument("--max-pages", type=int, default=None, help="페이지 한도를 이 값으로 줄인다(자료마다 정한 한도보다 크게는 못 함)")
     a = ap.parse_args(argv)
     if a.cmd == "list":
         for j in JOBS:
